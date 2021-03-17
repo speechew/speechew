@@ -1,0 +1,2 @@
+class SpeakNow < ApplicationRecord
+end

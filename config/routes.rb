@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'speak-now', to: 'speak_now#index'
   get 'dashboard/index'
   root "speak_now#index"
