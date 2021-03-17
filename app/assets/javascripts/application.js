@@ -21,3 +21,28 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+(function() {
+  $(document).on('turbolinks:load', function() {
+    var i, table, tableElementId, tableElementIds;
+    tableElementIds = ['#tasks-table', '#user-roles-table', '#base-names-table', '#tags-table', '#religions-table', '#users-table', '#religions-table', '#languages-table', '#families-table', '#countries-table', '#categories-table'];
+    i = 0;
+    while (i < tableElementIds.length) {
+      tableElementId = tableElementIds[i];
+      if ($.isEmptyObject($.find(tableElementId))) {
+        i++;
+        continue;
+      }
+      table = void 0;
+      if ($.fn.DataTable.isDataTable(tableElementId)) {
+        table = $(tableElementId).DataTable();
+      } else {
+        table = $(tableElementId).DataTable();
+      }
+      document.addEventListener('turbolinks:before-cache', function() {
+        table.destroy();
+      });
+      i++;
+    }
+  });
+
+}).call(this);

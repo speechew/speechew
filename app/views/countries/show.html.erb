@@ -1,0 +1,32 @@
+<h3>View Country - <%= @country.name %></h3>
+
+<p id="notice"><%= notice %></p>
+
+<div class="col-md-12">
+	<div class="panel panel-inverse" data-sortable-id="ui-widget-1">
+		<div class="panel-heading">
+			<h4 class="panel-title">Main Details</h4>
+		</div>
+		<div class="panel-body">
+
+						<p>
+			  <strong>Name:</strong>
+			  <%= @country.name %>
+			</p>
+			
+						<p>
+			  <strong>Country code:</strong>
+			  <%= @country.country_code %>
+			</p>
+			
+						<p>
+			  <strong>Continent name:</strong>
+			  <%= @country.continent_name %>
+			</p>
+			
+						<%= link_to 'Edit', edit_country_path(@country) %> |
+			<%= link_to 'Back', countries_path %>
+		
+		</div>
+	</div>
+</div>

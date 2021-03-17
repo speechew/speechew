@@ -1,0 +1,9 @@
+$("ul.errors").html("")
+<% if @language.errors.any? %>
+  <% @language.errors.full_messages.each do |message| %>
+    $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
+  <% end %>
+<% else %>  
+  $('#languages-table').DataTable().ajax.reload();
+  $("#global-modal").modal("hide")
+<% end %>

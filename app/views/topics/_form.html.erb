@@ -1,0 +1,15 @@
+<%= form_for(@topic, remote: true, html: {class: :topic_form, class: "form-horizontal", style: "display:inline;" }) do |f| %>
+  <div class="modal-body">
+  <ul class="errors"></ul>
+<div class="row">
+  <div class="form-group col-md-6">
+    <%= f.label :name, class: "control-label" %>
+	  <%= f.text_field :name, class: 'form-control' %>
+	</div>
+  </div>
+  <div class="modal-footer">
+    <%= f.submit "Save Topic", class: "btn btn-primary" %>
+    <%= link_to "Cancel", "#", class: "btn btn-secondary", data: {dismiss: "modal"} %>
+  </div>
+  </div>
+<% end %>

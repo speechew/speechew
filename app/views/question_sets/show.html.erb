@@ -1,0 +1,22 @@
+<h3>View Question_set - <%= @question_set.name %></h3>
+
+<p id="notice"><%= notice %></p>
+
+<div class="col-md-12">
+	<div class="panel panel-inverse" data-sortable-id="ui-widget-1">
+		<div class="panel-heading">
+			<h4 class="panel-title">Main Details</h4>
+		</div>
+		<div class="panel-body">
+
+						<p>
+			  <strong>Title:</strong>
+			  <%= @question_set.title %>
+			</p>
+			
+						<%= link_to 'Edit', edit_question_set_path(@question_set) %> |
+			<%= link_to 'Back', question_sets_path %>
+		
+		</div>
+	</div>
+</div>

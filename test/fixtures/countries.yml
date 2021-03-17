@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  country_code: MyString
+  continent_name: 1
+  deleted: false
+
+two:
+  name: MyString
+  country_code: MyString
+  continent_name: 1
+  deleted: false

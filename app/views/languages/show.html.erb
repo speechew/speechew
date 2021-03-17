@@ -1,0 +1,27 @@
+<h3>View Language - <%= @language.name %></h3>
+
+<p id="notice"><%= notice %></p>
+
+<div class="col-md-12">
+	<div class="panel panel-inverse" data-sortable-id="ui-widget-1">
+		<div class="panel-heading">
+			<h4 class="panel-title">Main Details</h4>
+		</div>
+		<div class="panel-body">
+
+						<p>
+			  <strong>Name:</strong>
+			  <%= @language.name %>
+			</p>
+			
+						<p>
+			  <strong>Language code:</strong>
+			  <%= @language.language_code %>
+			</p>
+			
+						<%= link_to 'Edit', edit_language_path(@language) %> |
+			<%= link_to 'Back', languages_path %>
+		
+		</div>
+	</div>
+</div>
