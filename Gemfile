@@ -58,3 +58,4 @@ gem 'cancancan'
 gem 'rolify'
 gem 'ajax-datatables-rails'
 gem 'coffee-rails'
+gem "select2-rails"

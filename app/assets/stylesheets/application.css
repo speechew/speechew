@@ -12,6 +12,8 @@
  *
  *= require css/sb-admin-2.css
  *= require datatables/dataTables.bootstrap4.min.css
+ *= require select2
+ *= require select2-bootstrap
  *= require_tree .
  *= require_self
  */

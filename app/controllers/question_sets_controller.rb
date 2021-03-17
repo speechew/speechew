@@ -42,6 +42,6 @@ class QuestionSetsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def question_set_params
-      params.require(:question_set).permit(:title)
+      params.require(:question_set).permit(:title, topic_ids: [])
     end
 end

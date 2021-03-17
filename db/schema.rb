@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_17_104324) do
+ActiveRecord::Schema.define(version: 2021_03_17_110352) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
@@ -29,11 +29,28 @@ ActiveRecord::Schema.define(version: 2021_03_17_104324) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "question_set_topics", force: :cascade do |t|
+    t.integer "question_set_id", null: false
+    t.integer "topic_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_set_id"], name: "index_question_set_topics_on_question_set_id"
+    t.index ["topic_id"], name: "index_question_set_topics_on_topic_id"
+  end
+
   create_table "question_sets", force: :cascade do |t|
     t.text "title"
     t.boolean "deleted", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.integer "question_set_id", null: false
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_set_id"], name: "index_questions_on_question_set_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -74,4 +91,7 @@ ActiveRecord::Schema.define(version: 2021_03_17_104324) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "question_set_topics", "question_sets"
+  add_foreign_key "question_set_topics", "topics"
+  add_foreign_key "questions", "question_sets"
 end
