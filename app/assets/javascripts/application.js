@@ -17,6 +17,7 @@
 //= require jquery-easing/jquery.easing.js
 //= require js/sb-admin-2.js
 //= require select2
+//= require cocoon
 //= require datatables/jquery.dataTables.min.js
 //= require datatables/dataTables.bootstrap4.min.js
 //= require activestorage
