@@ -1,0 +1,24 @@
+<h3>View <%= singular_table_name.capitalize %> - <%%= @<%= singular_table_name.downcase %>.name %></h3>
+
+<p id="notice"><%%= notice %></p>
+
+<div class="col-md-12">
+	<div class="panel panel-inverse" data-sortable-id="ui-widget-1">
+		<div class="panel-heading">
+			<h4 class="panel-title">Main Details</h4>
+		</div>
+		<div class="panel-body">
+
+			<% attributes.reject{ |a| a.name == "deleted" }.reject(&:password_digest?).each do |attribute| -%>
+			<p>
+			  <strong><%= attribute.human_name %>:</strong>
+			  <%%= @<%= singular_table_name.downcase %>.<%= attribute.name %> %>
+			</p>
+			
+			<% end -%>
+			<%%= link_to 'Edit', edit_<%= singular_table_name.downcase %>_path(@<%= singular_table_name.downcase %>) %> |
+			<%%= link_to 'Back', <%= index_helper.downcase %>_path %>
+		
+		</div>
+	</div>
+</div>

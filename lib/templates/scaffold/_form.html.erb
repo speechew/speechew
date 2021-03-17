@@ -1,0 +1,31 @@
+<%%= form_for(@<%= singular_table_name.downcase %>, remote: true, html: {class: :<%= singular_table_name.downcase %>_form, class: "form-horizontal", style: "display:inline;" }) do |f| %>
+  <div class="modal-body">
+  <ul class="errors"></ul>
+
+<% attributes.reject{ |a| a.name == "deleted"}.each do |attribute| -%>
+  <div class="form-group col-md-6">
+<% if attribute.password_digest? -%>
+    <%%= f.label :password %>, class: "control-label"
+	  <%%= f.password_field :password %>, class: 'form-control'
+  </div>
+  <div class="form-group col-md-6">
+    <%%= f.label :password_confirmation %>, class: "control-label"
+	  <%%= f.password_field :password_confirmation %>, class: 'form-control'
+<% else -%>
+  <%- if attribute.reference? -%>
+    <%%= f.label :<%= attribute.column_name %>, class: "control-label" %>
+      <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %>, class: 'form-control' %>
+  <%- else -%>
+    <%%= f.label :<%= attribute.name %>, class: "control-label" %>
+	  <%%= f.<%= attribute.field_type %> :<%= attribute.name %>, class: 'form-control' %>
+	</div>
+  <%- end -%>
+<% end -%>
+  </div>
+<% end -%>
+  <div class="modal-footer">
+    <%%= f.submit "Save <%= singular_table_name.humanize.titleize %>", class: "btn btn-primary" %>
+    <%%= link_to "Cancel", "#", class: "btn btn-secondary", data: {dismiss: "modal"} %>
+  </div>
+  </div>
+<%% end %>
