@@ -1,29 +1,80 @@
-<h2>Sign up</h2>
+<h4>Create Account</h4>
+<% if flash.alert %>
+<div class="alert alert-danger"><%= flash.alert %></div>
+<% end %>
+<% if flash.notice %>
+<div class="alert alert-info"><%= flash.notice %></div>
+<% end %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true) do |f| %>
+<%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="form-group row">
+  <div class="col-sm-6 mb-3 mb-sm-0">
+    <%= f.text_field :first_name, class: 'form-control',placeholder: "First Name",required: true %>
   </div>
+  <div class="col-sm-6">
+    <%= f.text_field :last_name, class: 'form-control',placeholder: "Last Name",required: true %>
+  </div>
+</div>
+<div class="form-group row">
+  <div class="col-sm-6 mb-3 mb-sm-0">
+    <%= f.date_field :dob, class: 'form-control',placeholder: "Date of Birth",required: true %>
+  </div>
+  <div class="col-sm-6">
+    <%= f.select :gender, options_for_select(User.genders.map {|k, v| [k.titleize, k]}, @user.gender), {:prompt => "Select Gender"}, {:class => "form-control",required: true} %>
+  </div>
+</div>
+<div class="form-group row">
+  <div class="col-sm-6 mb-3 mb-sm-0">
+    <%= f.collection_select(:country_id, Country.where(deleted: 0).order(:name), :id, :name, {}, {:prompt => "Select Country", class: "form-control", style: "width:100%;",required: true}) %>
+  </div>
+    <div class="col-sm-6 mb-3 mb-sm-0">
+    <%= f.collection_select(:language_id, Language.where(deleted: 0).order(:name), :id, :name, {}, {:prompt => "Native Language", class: "form-control", style: "width:100%;",required: true}) %>
+  </div>
+</div>
+<div class="form-group row">
+  <div class="col-md-12">
+    <%= f.text_area :bio, class: 'form-control',placeholder: "Short bio",required: true %>
+  </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-12">
+      <hr class="p-0 m-0">
+    </div>
+  </div>
+<div class="form-group">
+  <%= f.email_field :email, class: 'form-control',placeholder: "Email Address",required: true %>
+</div>
 
-  <div class="field">
-    <%= f.label :password %>
+  <div class="form-group">
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password",class: 'form-control',placeholder: "Password",required: true %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="form-group">
+    <%= f.password_field :password_confirmation, autocomplete: "new-password",class: 'form-control',placeholder: "Password confirmation",required: true %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+<div class="actions">
+  <%= f.submit "Sign up", class: 'btn btn-primary btn-user btn-block' %>
+</div>
 <% end %>
 
+<div class="w-100 text-center">
 <%= render "devise/shared/links" %>
+</div>
+<script type="text/javascript">
+  $("#user_country_id").select2({
+    theme: "bootstrap",
+    placeholder: "Select Country",
+    allowClear: true
+});
+    $("#user_language_id").select2({
+    theme: "bootstrap",
+    placeholder: "Select Language",
+    allowClear: true
+});
+</script>

@@ -23,6 +23,10 @@
       <div id="content">
         <%= render "layouts/top_bar" %>
         <div class="container-fluid">
+          <%- flash.each do |name, msg| 
+                next unless msg.is_a? String -%>
+                <%= content_tag :div, msg.html_safe, class: "alert alert-#{bootstrap_flash_translate(name, msg)}" %>
+              <%- end -%>
             <%= yield %>
           </div>
         </div>

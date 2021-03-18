@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :topics
   resources :countries
   resources :languages
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "user/registrations"}
   get 'speak-now', to: 'speak_now#index'
   get 'dashboard', to: 'dashboard#index'
   root "speak_now#index"

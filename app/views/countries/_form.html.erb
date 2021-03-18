@@ -4,17 +4,17 @@
 <div class="row">
   <div class="form-group col-md-4">
     <%= f.label :name, class: "control-label" %>
-	  <%= f.text_field :name, class: 'form-control' %>
+	  <%= f.text_field :name, class: 'form-control',required: true %>
 	</div>
 
   <div class="form-group col-md-4">
     <%= f.label :country_code, class: "control-label" %>
-	  <%= f.text_field :country_code, class: 'form-control' %>
+	  <%= f.text_field :country_code, class: 'form-control',required: true %>
 	</div>
 
   <div class="form-group col-md-4">
     <%= f.label :continent_name, class: "control-label" %>
-	  <%= f.select :continent_name, options_for_select(Country.continent_names.map {|k, v| [k.titleize, k]}, @country.continent_name), {:include_blank => "Please Select"}, {:class => "form-control"} %>
+	  <%= f.select :continent_name, options_for_select(Country.continent_names.map {|k, v| [k.titleize, k]}, @country.continent_name), {:include_blank => "Please Select"}, {:class => "form-control",required: true} %>
 	</div>
   </div>
   <div class="modal-footer">

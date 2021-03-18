@@ -20,3 +20,8 @@
  .sidebar-brand-icon .svg-inline--fa{
  	font-size: 35px;
  }
+ #new_user .select2-selection__placeholder,#new_user .select2-selection__rendered{
+ 	font-size: 1rem;
+    color: #6e707e;
+    font-family: 'Nunito';
+ }
