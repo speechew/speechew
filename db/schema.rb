@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_17_110352) do
+ActiveRecord::Schema.define(version: 2021_03_17_124815) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
@@ -72,6 +72,18 @@ ActiveRecord::Schema.define(version: 2021_03_17_110352) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "full_name"
+    t.integer "gender"
+    t.date "dob"
+    t.text "bio"
+    t.boolean "availability", default: true
+    t.float "language_score"
+    t.boolean "blocked", default: false
+    t.integer "bad_mark"
+    t.integer "no_of_times_blocked"
+    t.datetime "last_blocked_at"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -79,7 +91,11 @@ ActiveRecord::Schema.define(version: 2021_03_17_110352) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "country_id"
+    t.integer "language_id"
+    t.index ["country_id"], name: "index_users_on_country_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["language_id"], name: "index_users_on_language_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -94,4 +110,6 @@ ActiveRecord::Schema.define(version: 2021_03_17_110352) do
   add_foreign_key "question_set_topics", "question_sets"
   add_foreign_key "question_set_topics", "topics"
   add_foreign_key "questions", "question_sets"
+  add_foreign_key "users", "countries"
+  add_foreign_key "users", "languages"
 end
