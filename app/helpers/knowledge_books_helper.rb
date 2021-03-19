@@ -1,0 +1,2 @@
+module KnowledgeBooksHelper
+end

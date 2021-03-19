@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  knowledge_book: one
+  title: MyString
+  content: MyText
+
+two:
+  knowledge_book: two
+  title: MyString
+  content: MyText

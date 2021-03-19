@@ -1,0 +1,32 @@
+<h3>View Knowledge_book - <%= @knowledge_book.name %></h3>
+
+<p id="notice"><%= notice %></p>
+
+<div class="col-md-12">
+	<div class="panel panel-inverse" data-sortable-id="ui-widget-1">
+		<div class="panel-heading">
+			<h4 class="panel-title">Main Details</h4>
+		</div>
+		<div class="panel-body">
+
+						<p>
+			  <strong>Code:</strong>
+			  <%= @knowledge_book.code %>
+			</p>
+			
+						<p>
+			  <strong>Title:</strong>
+			  <%= @knowledge_book.title %>
+			</p>
+			
+						<p>
+			  <strong>Content:</strong>
+			  <%= @knowledge_book.content %>
+			</p>
+			
+						<%= link_to 'Edit', edit_knowledge_book_path(@knowledge_book) %> |
+			<%= link_to 'Back', knowledge_books_path %>
+		
+		</div>
+	</div>
+</div>

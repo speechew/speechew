@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  resources :knowledge_books, :path => 'knowledge-books'
   resources :pages
-  resources :question_sets
+  resources :question_sets, :path => 'question-sets'
   resources :topics
   resources :countries
   resources :languages
