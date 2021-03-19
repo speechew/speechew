@@ -47,7 +47,7 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item <%= controller_name == 'dashboard' ? 'active' : ''%>">
                 <a class="nav-link" href="<%= dashboard_path %>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -55,15 +55,16 @@
             <li class="nav-item">
                 <a class="nav-link <%= 'collapsed' if !['countries','languages','topics','question_sets','pages'].include? controller_name %>" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-layer-group"></i>
                     <span>Assets</span>
                 </a>
-                <div id="collapseTwo" class="collapse <%= 'show' if ['countries','languages','topics','question_sets','pages','knowledge_books'].include? controller_name %>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse <%= 'show' if ['countries','languages','topics','question_sets','pages','knowledge_books','categories'].include? controller_name %>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Basic Assets:</h6>
                         <a class="collapse-item <%= 'active' if controller_name == 'countries' %>" href="<%= countries_path%>">Countries</a>
                         <a class="collapse-item <%= 'active' if controller_name == 'languages' %>" href="<%= languages_path%>">Languages</a>
                         <a class="collapse-item <%= 'active' if controller_name == 'topics' %>" href="<%= topics_path%>">Topics</a>
+                        <a class="collapse-item <%= 'active' if controller_name == 'categories' %>" href="<%= categories_path%>">Categories</a>
                         <a class="collapse-item <%= 'active' if controller_name == 'question_sets' %>" href="<%= question_sets_path%>">Question Sets</a>
                         <h6 class="collapse-header">Information Assets:</h6>
                         <a class="collapse-item <%= 'active' if controller_name == 'pages' %>" href="<%= pages_path%>">Pages</a>
@@ -72,29 +73,16 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<%= dashboard_path %>">
+                <a class="nav-link" href="<%= users_list_path %>">
                     <i class="fa fa-users" aria-hidden="true"></i>
                     <span>Users</span></a>
             </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link" href="<%= users_list_path %>">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
+                    <span>Settings</span></a>
             </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -103,8 +91,13 @@
             <div class="sidebar-heading">
                 Articles
             </div>
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+            <li class="nav-item <%= (controller_name == 'articles' and action_name == "my_articles") ? 'active' : ''%>">
+                <a class="nav-link" href="<%= my_articles_path %>">
+                    <i class="fas fa-swatchbook"></i>
+                    <span>My Articles</span></a>
+            </li>
+            <li class="nav-item <%= (controller_name == 'articles' and action_name == "index") ? 'active' : ''%>">
+                <a class="nav-link" href="<%= articles_path %>">
                     <i class="fas fa-newspaper"></i>
                     <span>Recent</span></a>
             </li>

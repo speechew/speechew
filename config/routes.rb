@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :articles
+  resources :categories
+  get 'my-articles', to: 'articles#my_articles'
+  get 'users-list', to: 'users_list#index'
   resources :knowledge_books, :path => 'knowledge-books'
   resources :pages
   resources :question_sets, :path => 'question-sets'
