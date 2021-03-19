@@ -25,3 +25,7 @@
     color: #6e707e;
     font-family: 'Nunito';
  }
+ .editor-min-height{
+ 	height: 250px;
+ 	overflow-y: auto;
+ }
