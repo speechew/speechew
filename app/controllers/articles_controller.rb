@@ -23,13 +23,13 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     if @article.save
-      redirect_to my_articles_path, notice: "Article successfully created."
+      redirect_to article_path(@article), notice: "Article successfully created."
     end
   end
 
   def update
     if @article.update(article_params)
-      redirect_to my_articles_path, notice: "Article successfully updated."
+      redirect_to article_path(@article), notice: "Article successfully updated."
     end
   end
 
@@ -48,6 +48,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def article_params
-      params.require(:article).permit(:title, :content, category_ids: [])
+      params.require(:article).permit(:title, :content, :status, category_ids: [])
     end
 end
