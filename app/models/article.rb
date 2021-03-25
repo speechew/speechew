@@ -1,4 +1,7 @@
 class Article < ApplicationRecord
+  validates :title, uniqueness: true
+  validates :about, presence: true
+  validates :content, presence: true
   has_many :article_categories
   has_many :categories, through: :article_categories
   belongs_to :user, optional: true

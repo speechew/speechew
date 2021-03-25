@@ -4,10 +4,7 @@ class ArticlesController < ApplicationController
   respond_to :html, :js, :json
   
   def index
-	respond_to do |format|
-      format.html
-      format.json { render json: ArticleDatatable.new(view_context, {ca: current_user}) }
-    end
+	@articles = Article.where(:deleted => false).where(:status => "Published").paginate(page: params[:page], per_page: 3)
   end
 
   def show
@@ -39,6 +36,10 @@ class ArticlesController < ApplicationController
   end
 
   def my_articles
+    respond_to do |format|
+      format.html
+      format.json { render json: ArticleDatatable.new(view_context, {ca: current_user}) }
+    end
   end
 
   private
@@ -48,6 +49,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def article_params
-      params.require(:article).permit(:title, :content, :status, category_ids: [])
+      params.require(:article).permit(:title, :content, :status, :about, category_ids: [])
     end
 end
