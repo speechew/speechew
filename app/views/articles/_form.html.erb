@@ -15,6 +15,7 @@
       <div class="form-group col-md-12">
         <%= f.label :about, class: "control-label" %>
         <%= f.text_area :about, class: "form-control", required: true,minlength: "140",maxlength: "150" %>
+        <span class="mt-1 float-left">Character count: <span id="char-limit"></span></span>
       </div>
       <div class="form-group col-md-12">
         <%= f.label :content, class: "control-label" %>
@@ -41,5 +42,23 @@
 <script type="text/javascript">
   $(".select2").select2({
     theme: "bootstrap"
+});
+  var charCount = $("#article_about").val().length;
+  $("#char-limit").html(charCount);
+    if (charCount > 140) {
+        $("#char-limit").css("color", "red");
+     } else {
+        $("#char-limit").css("color", "black");
+     }
+
+  $("#article_about").keyup(function(){
+  var charCount = $("#article_about").val().length;
+    //The text in the p element with id char-limit is equivelent to num of chars
+    $("#char-limit").html(charCount);
+    if (charCount > 140) {
+        $("#char-limit").css("color", "red");
+     } else {
+        $("#char-limit").css("color", "black");
+     }
 });
 </script>

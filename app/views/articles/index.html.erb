@@ -1,15 +1,23 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h2 class="display-4">Articles</h2>
+    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+  </div>
+</div>
 <div class="card-columns">
   <% @articles.each do |article|%>
   <div class="card m-2">
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary"><%= article.title %></h6>
+      <h6 class="m-0 font-weight-bold text-primary"><%= link_to(article.title, article_path(article)) %></h6>
     </div>
     <div class="card-body">
-      <%= sanitize(truncate(article.about, length: 150)) %>
+      <small class="w-100 text-right float-left"><%= article.created_at.strftime('%d/%m/%Y %I:%M %p') %></small>
+      <small class="w-100 text-right float-left"><%= article.user.full_name %></small>
+      <%= sanitize(truncate(article.about, length: 120)) %>...
     </div>
   </div>
 <% end %>
 </div>
-<div class="w-100 text-center">
+<div class="pagination-outer w-100">
 <%= will_paginate @articles, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 </div>

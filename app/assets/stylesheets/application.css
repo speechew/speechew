@@ -29,3 +29,7 @@
  	height: 250px;
  	overflow-y: auto;
  }
+ .pagination-outer nav{
+ 	display: flex;
+ 	justify-content: center;
+ }

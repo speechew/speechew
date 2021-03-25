@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   respond_to :html, :js, :json
   
   def index
-	@articles = Article.where(:deleted => false).where(:status => "Published").paginate(page: params[:page], per_page: 3)
+	@articles = Article.where(:deleted => false).where(:status => "Published").paginate(page: params[:page], per_page: 6)
   end
 
   def show

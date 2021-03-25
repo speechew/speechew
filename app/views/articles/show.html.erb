@@ -7,6 +7,13 @@
     </div>
   </div>
   <div class="card-body">
+  	<div class="d-flex flex-row align-items-center justify-content-between">
+  	<h6><u><i>About</i></u></h6>
+  	<div><small class="w-100 text-right float-left"><%= @article.created_at.strftime('%d/%m/%Y %I:%M %p') %></small>
+      <small class="w-100 text-right float-left"><%= @article.user.full_name %></small></div>
+  	</div>
+  	<p><i><%= @article.about %></i></p>
+  	<hr>
   	<%= @article.content %>
   </div>
 </div>
