@@ -12,9 +12,18 @@ class User < ApplicationRecord
   enum gender: { 'Female': 0, 'Male': 1}
 
   before_save :set_fullname
+  after_create :promote_editor
+
+  validates :email, presence: true, uniqueness: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
 
   def set_fullname
     self.full_name = "#{self.first_name} #{self.last_name}"
+  end
+
+  def promote_editor
+    self.add_role "editor"
   end
 
   def ability

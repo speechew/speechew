@@ -1,0 +1,2 @@
+class UserGuide < ApplicationRecord
+end

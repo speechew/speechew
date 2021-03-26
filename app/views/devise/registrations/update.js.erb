@@ -1,0 +1,20 @@
+<% if @form_type == "profile" %>
+		$("ul.profile-errors").html("");
+		<% if @user.errors.any? %>
+		  <% @user.errors.full_messages.each do |message| %>
+		    $("ul.profile-errors").append($("<li />").html("<%= message.html_safe %>"))
+		  <% end %>
+		<% else %>
+			toastr.success('Profile successfully updated');
+		<% end %>
+	<% elsif @form_type == "password" %>
+		$("ul.password-errors").html("");
+		<% if @user.errors.any? %>
+		  <% @user.errors.full_messages.each do |message| %>
+		    $("ul.password-errors").append($("<li />").html("<%= message.html_safe %>"))
+		  <% end %>
+		<% else %>
+			$('#change-password-form').trigger("reset");
+			toastr.success('Password successfully updated');
+	   <% end %>
+<% end %>

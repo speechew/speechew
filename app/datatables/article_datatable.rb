@@ -1,6 +1,6 @@
 class ArticleDatatable < AjaxDatatablesRails::Base
 
-  def_delegators :@view, :link_to, :h, :mailto, :article_path, :edit_article_path
+  def_delegators :@view, :link_to, :h, :mailto, :article_path, :edit_article_path, :display_status
   
   
   def view_columns
@@ -30,15 +30,21 @@ class ArticleDatatable < AjaxDatatablesRails::Base
   
       { 
     title: link_to(record.title,article_path(record)),
-    status: record.status,
+    status: record.display_status,
     ops: ops.html_safe
     }
     end
   end
 
   def get_raw_records
+    where = {}
+    where[:status] = params[:status] unless params[:status].nil?
     # insert query here
-    Article.where(deleted: false)
+    if options[:ca].has_role? :admin
+      Article.where(deleted: false).where(where)
+    else
+      Article.where(deleted: false).where(user_id: options[:ca].id).where(where)
+    end
   end
 
   # ==== Insert 'presenter'-like methods below if necessary

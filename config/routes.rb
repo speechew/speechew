@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  get 'user-guides', to: 'user_guides#index'
+  get 'user-settings', to: 'user_settings#index'
   resources :articles
   resources :categories
   get 'my-articles', to: 'articles#my_articles'
+  get 'review-articles', to: 'articles#review_articles'
   get 'users-list', to: 'users_list#index'
   resources :knowledge_books, :path => 'knowledge-books'
   resources :pages

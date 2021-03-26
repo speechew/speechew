@@ -14,10 +14,10 @@ class ApplicationController < ActionController::Base
 
 	def resolve_layout
 		if((controller_name == "sessions" && action_name == "new") || (controller_name == "unlocks") || (controller_name == "passwords" && (action_name == "new" || action_name == "edit" || action_name == "create")) || (controller_name == "registrations" && action_name == "new"))
-	      "login"
-	    else
-	      "application"
-	    end
+			"login"
+		else
+			"application"
+		end
 	end
 
 	def configure_permitted_parameters
@@ -31,5 +31,13 @@ class ApplicationController < ActionController::Base
 
 	def set_current_user
 		User.current = current_user
+	end
+
+	def after_sign_in_path_for(resource)
+		if current_user.has_role? :admin
+			dashboard_path
+		else
+			root_path
+		end
 	end
 end

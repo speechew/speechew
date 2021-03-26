@@ -1,9 +1,14 @@
+<span class="mb-4 float-left w-100">
+<%= render_breadcrumbs %>
+</span>
 <div class="card shadow">
   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
     <h3 class="m-0 font-weight-bold text-primary"><%= @article.title %></h3>
     <div>
     	<%= link_to "Back to articles", articles_path, class: "btn btn-sm btn-secondary" %>
-    <%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-sm btn-primary' %>
+    <% if current_user.can? :update, @article then %>
+    	<%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-sm btn-primary' %>
+    <% end %>
     </div>
   </div>
   <div class="card-body">

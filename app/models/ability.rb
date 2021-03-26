@@ -6,9 +6,21 @@ class Ability
   def initialize(user)
     user ||= User.new
     if user.has_role? :admin
-      can :manage, :all
-    else
-      can :read, :all
+        can :manage, :all
+    elsif user.has_role? :editor
+        can :index, SpeakNow
+        # Article Access
+        can :new, Article
+        can :create, Article
+        can :edit, Article, user_id: user.id, status: 'In progress'
+        can :update, Article, user_id: user.id, status: 'In progress'
+        can :read, Article, user_id: user.id
+        can :read, Article, status: 'Published'
+        can :my_articles, Article
+        # User Settings Access
+        can :index, UserSetting
+        # User Guides Access
+        can :index, UserGuide
     end
     # Define abilities for the passed in user here. For example:
     #

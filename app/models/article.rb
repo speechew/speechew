@@ -13,4 +13,16 @@ class Article < ApplicationRecord
   def set_author
     self.user_id = User.current.id
   end
+
+  def display_status
+    if self.status.nil? then 
+      "N/A"
+    elsif self.status == 'In progress'
+      '<span class="badge badge-primary">In progress</span>'.html_safe
+    elsif self.status == 'Review'
+      '<span class="badge badge-warning">Review</span>'.html_safe
+    elsif self.status == 'Published'
+      '<span class="badge badge-success">Published</span>'.html_safe
+    end
+  end
 end

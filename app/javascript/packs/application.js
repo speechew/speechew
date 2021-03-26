@@ -19,3 +19,4 @@ import "@fortawesome/fontawesome-free/js/all";
 
 require("trix")
 require("@rails/actiontext")
+global.toastr = require("toastr")

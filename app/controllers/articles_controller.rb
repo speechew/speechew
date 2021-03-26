@@ -2,12 +2,15 @@ class ArticlesController < ApplicationController
   load_and_authorize_resource
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   respond_to :html, :js, :json
+
+  add_breadcrumb "Articles", :articles_path
   
   def index
-	@articles = Article.where(:deleted => false).where(:status => "Published").paginate(page: params[:page], per_page: 6)
+	 @articles = Article.where(:deleted => false).where(:status => "Published").paginate(page: params[:page], per_page: 4)
   end
 
   def show
+    add_breadcrumb "#{@article.title}", article_path(@article)
   end
 
   def new
@@ -36,6 +39,13 @@ class ArticlesController < ApplicationController
   end
 
   def my_articles
+    respond_to do |format|
+      format.html
+      format.json { render json: ArticleDatatable.new(view_context, {ca: current_user}) }
+    end
+  end
+
+  def review_articles
     respond_to do |format|
       format.html
       format.json { render json: ArticleDatatable.new(view_context, {ca: current_user}) }

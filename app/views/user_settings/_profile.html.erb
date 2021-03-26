@@ -1,0 +1,55 @@
+<%= form_for(current_user, url: registration_path(current_user), remote: true, html: { method: :put, id: "change-profile-form" }) do |f| %>
+<%= f.hidden_field :profile, value: true%>
+<ul class="profile-errors"></ul>
+<div class="form-group row">
+  <div class="col-sm-6 mb-3 mb-sm-0">
+    <%= f.text_field :first_name, class: 'form-control',placeholder: "First Name",required: true %>
+  </div>
+  <div class="col-sm-6">
+    <%= f.text_field :last_name, class: 'form-control',placeholder: "Last Name",required: true %>
+  </div>
+</div>
+<div class="form-group row">
+  <div class="col-sm-6 mb-3 mb-sm-0">
+    <%= f.date_field :dob, class: 'form-control',placeholder: "Date of Birth",required: true %>
+  </div>
+  <div class="col-sm-6">
+    <%= f.select :gender, options_for_select(User.genders.map {|k, v| [k.titleize, k]}, current_user.gender), {:prompt => "Select Gender"}, {:class => "form-control",required: true} %>
+  </div>
+</div>
+<div class="form-group row">
+  <div class="col-sm-6 mb-3 mb-sm-0">
+    <%= f.collection_select(:country_id, Country.where(deleted: 0).order(:name), :id, :name,{}, {:prompt => "Select Country", class: "form-control", style: "width:100%;",required: true}) %>
+  </div>
+    <div class="col-sm-6 mb-3 mb-sm-0">
+    <%= f.collection_select(:language_id, Language.where(deleted: 0).order(:name), :id, :name, {}, {:prompt => "Native Language", class: "form-control", style: "width:100%;",required: true}) %>
+  </div>
+</div>
+<div class="form-group row">
+  <div class="col-md-12">
+    <%= f.text_area :bio, class: 'form-control',placeholder: "Short bio",required: true %>
+  </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-12">
+      <hr class="p-0 m-0">
+    </div>
+  </div>
+
+<div class="actions float-right">
+  <%= f.submit "Update profile", class: 'btn btn-primary btn-user' %>
+</div>
+<% end %>
+
+<script type="text/javascript">
+  $("#user_country_id").select2({
+    theme: "bootstrap",
+    placeholder: "Select Country",
+    allowClear: true
+});
+    $("#user_language_id").select2({
+    theme: "bootstrap",
+    placeholder: "Select Language",
+    allowClear: true
+});
+</script>

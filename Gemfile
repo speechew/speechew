@@ -62,3 +62,4 @@ gem "select2-rails"
 gem "cocoon"
 gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap4'
+gem "breadcrumbs_on_rails"

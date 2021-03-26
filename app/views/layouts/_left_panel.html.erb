@@ -11,7 +11,7 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
-
+            <% if current_user.has_role? :student or current_user.has_role? :editor %>
             <!-- Nav Item - Dashboard -->
             <li class="nav-item <%= controller_name == 'speak_now' ? 'active' : ''%>">
                 <a class="nav-link" href="<%= speak_now_path %>">
@@ -28,21 +28,22 @@
                     <i class="fas fa-comment-dots"></i>
                     <span>Feedback</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">
+            <li class="nav-item <%= controller_name == 'user_guides' ? 'active' : ''%>">
+                <a class="nav-link" href="<%= user_guides_path%>">
                     <i class="fas fa-info-circle"></i>
                     <span>Guide</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">
+            <li class="nav-item <%= controller_name == 'user_settings' ? 'active' : ''%>">
+                <a class="nav-link" href="<%= user_settings_path %>">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Settings</span></a>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
-
+            <% end %>
+            <% if current_user.has_role? :admin %>
             <!-- Heading -->
-            <div class="sidebar-heading">
+            <div class="sidebar-heading mt-2">
                 Admin
             </div>
 
@@ -86,44 +87,34 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider">
+            <% end %>
 
+            <% if current_user.has_role? :editor or current_user.has_role? :admin  %>
             <!-- Heading -->
             <div class="sidebar-heading">
                 Articles
             </div>
+            <% if current_user.has_role? :admin %>
+            <li class="nav-item <%= (controller_name == 'articles' and action_name == "review_articles") ? 'active' : ''%>">
+                <a class="nav-link" href="<%= review_articles_path %>">
+                    <i class="fas fa-swatchbook"></i>
+                    <span>Review Articles</span></a>
+            </li>
+            <% else %>
             <li class="nav-item <%= (controller_name == 'articles' and action_name == "my_articles") ? 'active' : ''%>">
                 <a class="nav-link" href="<%= my_articles_path %>">
                     <i class="fas fa-swatchbook"></i>
                     <span>My Articles</span></a>
             </li>
+            <% end %>
             <li class="nav-item <%= (controller_name == 'articles' and action_name == "index") ? 'active' : ''%>">
                 <a class="nav-link" href="<%= articles_path %>">
                     <i class="fas fa-newspaper"></i>
-                    <span>Recent</span></a>
+                    <span>Articles</span></a>
             </li>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Categories</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li>            
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
 
+            <hr class="sidebar-divider d-none d-md-block">
+            <% end %>
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
