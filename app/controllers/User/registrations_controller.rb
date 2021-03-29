@@ -23,29 +23,34 @@ class User::RegistrationsController < Devise::RegistrationsController
   def update
     @user = User.find(current_user.id)
     @form_type = nil
-    if !params[:user][:profile].nil?
-      if @user.update(update_profile_params)
-        sign_in @user 
-      else
-        sign_in @user 
-      end
-      @form_type = "profile"
-    elsif !params[:user][:change_password].nil?
-      if @user.valid_password?(params[:user][:current_password])
-        if @user.update(update_password_params)
-          bypass_sign_in @user 
+    if current_user.can? :update, @user then 
+      if !params[:user][:profile].nil?
+        if @user.update(update_profile_params)
+          sign_in @user 
         else
           sign_in @user 
         end
-      else
-        @user.errors.add(:base, "Your current password is incorrect.")
-        if params[:user][:password] != params[:user][:password_confirmation]
-          @user.errors.add(:base, "Password confirmation doesn't match Password")
+        @form_type = "profile"
+      elsif !params[:user][:change_password].nil?
+        if @user.valid_password?(params[:user][:current_password])
+          if @user.update(update_password_params)
+            bypass_sign_in @user 
+          else
+            sign_in @user 
+          end
+        else
+          @user.errors.add(:base, "Your current password is incorrect.")
+          if params[:user][:password] != params[:user][:password_confirmation]
+            @user.errors.add(:base, "Password confirmation doesn't match Password")
+          end
         end
+        @form_type = "password"
       end
-      @form_type = "password"
+      render layout: false
+    else
+      redirect_to(root_url, {:flash => { :error => "You are not authorized to perform this action!"}})
     end
-    render layout: false
+    
   end
 
   # DELETE /resource

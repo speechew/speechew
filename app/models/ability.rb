@@ -21,6 +21,7 @@ class Ability
         can :index, UserSetting
         # User Guides Access
         can :index, UserGuide
+        can :update, User, id: user.id
     elsif user.has_role? :student
         can :index, SpeakNow
         # Article Access
@@ -29,6 +30,7 @@ class Ability
         can :index, UserSetting
         # User Guides Access
         can :index, UserGuide
+        can :update, User, id: user.id
     end
     # Define abilities for the passed in user here. For example:
     #
