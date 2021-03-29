@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 	protected
 
 	def resolve_layout
-		if((controller_name == "sessions" && action_name == "new") || (controller_name == "unlocks") || (controller_name == "passwords" && (action_name == "new" || action_name == "edit" || action_name == "create")) || (controller_name == "registrations" && action_name == "new"))
+		if((controller_name == "sessions" && action_name == "new") || (controller_name == "unlocks") || (controller_name == "passwords" && (action_name == "new" || action_name == "edit" || action_name == "create")) || (controller_name == "registrations" && action_name == "new") || (controller_name == "confirmations"))
 			"login"
 		else
 			"application"

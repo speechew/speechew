@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class User::RegistrationsController < Devise::RegistrationsController
-  before_action :configure_sign_up_params, only: [:create]
+  # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -11,7 +11,13 @@ class User::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super
+    @user = User.new(sign_up_params)
+    if @user.save
+      @user.add_role "student"
+      redirect_to new_user_session_path, :notice => 'You have to confirm your email address before continuing.'
+    else
+      render layout: false
+    end
   end
 
   # GET /resource/edit
@@ -70,8 +76,8 @@ class User::RegistrationsController < Devise::RegistrationsController
   protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:dob, :gender, :bio, :country_id, :language_id])
+  def sign_up_params
+    params.require(:user).permit(:email, :password, :password_confirmation,:first_name, :last_name, :dob, :gender, :bio, :country_id, :language_id)
   end
 
   def update_password_params

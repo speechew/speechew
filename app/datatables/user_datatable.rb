@@ -24,10 +24,10 @@ class UserDatatable < AjaxDatatablesRails::Base
     end
     
       { 
-        name: record.full_name,
+        name: ((record.full_name.nil? ? '' : record.full_name)+"</br>"+record.display_roles).html_safe,
         email: record.email,
         sign_in_count: record.sign_in_count,
-        current_sign_in_at: record.current_sign_in_at,
+        current_sign_in_at: record.current_sign_in_at.nil? ? 'N/A' : record.current_sign_in_at,
         ops: ops.html_safe
       }
     end

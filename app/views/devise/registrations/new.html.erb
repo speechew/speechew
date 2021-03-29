@@ -7,7 +7,7 @@
 <% end %>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true) do |f| %>
-<%= render "devise/shared/error_messages", resource: resource %>
+<ul class="errors"></ul>
 
 <div class="form-group row">
   <div class="col-sm-6 mb-3 mb-sm-0">

@@ -31,6 +31,10 @@
 				<span>Last blocked at: <b><%= @user.last_blocked_at.nil? ? 'N/A' : @user.last_blocked_at %></b></span><br>
 				<span>No of times blocked: <b><%= @user.no_of_times_blocked.nil? ? 'N/A' : @user.no_of_times_blocked %></b></span><br>
 			</div>
+			<div class="col-md-12 mt-2">
+				<h4><u>Short bio</u></h4>
+				<p><%= @user.bio %></p>
+			</div>
 		</div>
 		
 	</div>
