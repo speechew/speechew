@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :trackable
 	rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -11,6 +11,8 @@ class User < ApplicationRecord
 
   enum gender: { 'Female': 0, 'Male': 1}
 
+  belongs_to :country, optional: true
+  belongs_to :language, optional: true
   before_save :set_fullname
   after_create :promote_editor
 
@@ -23,7 +25,7 @@ class User < ApplicationRecord
   end
 
   def promote_editor
-    self.add_role "editor"
+    self.add_role "student"
   end
 
   def ability
@@ -37,5 +39,15 @@ class User < ApplicationRecord
 
   def self.current
   	Thread.current[:current_user]
+  end
+
+  def display_roles
+    rl = ""
+    if self.roles.collect(&:name).any?
+      self.roles.collect(&:name).each do |r|
+        rl = rl + " " + '<span class="badge badge-dark">'+r.to_s+'</span>'
+      end
+    end
+    return rl.html_safe
   end
 end

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'my-articles', to: 'articles#my_articles'
   get 'review-articles', to: 'articles#review_articles'
   get 'users-list', to: 'users_list#index'
+  get 'user-view/:id', to: 'users#user_view', :as => :user_view
   resources :knowledge_books, :path => 'knowledge-books'
   resources :pages
   resources :question_sets, :path => 'question-sets'

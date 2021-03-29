@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   respond_to :html, :js, :json
   
   def index
-	respond_to do |format|
+	  respond_to do |format|
       format.html
       format.json { render json: PageDatatable.new(view_context, {ca: current_user}) }
     end

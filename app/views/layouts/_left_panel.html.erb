@@ -6,7 +6,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-beam"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SPEECHEW</div>
+                <div class="sidebar-brand-text mx-3">LangoTern</div>
             </a>
 
             <!-- Divider -->
@@ -73,14 +73,14 @@
                     </div>
                 </div>
             </li>
-            <li class="nav-item">
+            <li class="nav-item <%= 'active' if ['users_list','users'].include? controller_name%>">
                 <a class="nav-link" href="<%= users_list_path %>">
                     <i class="fa fa-users" aria-hidden="true"></i>
                     <span>Users</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<%= users_list_path %>">
-                    <i class="fas fa-fw fa-wrench"></i>
+            <li class="nav-item <%= controller_name == 'user_settings' ? 'active' : ''%>">
+                <a class="nav-link" href="<%= user_settings_path %>">
+                    <i class="fas fa-fw fa-cog"></i>
                     <span>Settings</span></a>
             </li>
 
@@ -89,7 +89,7 @@
             <hr class="sidebar-divider">
             <% end %>
 
-            <% if current_user.has_role? :editor or current_user.has_role? :admin  %>
+            <% if current_user.has_role? :student or current_user.has_role? :editor or current_user.has_role? :admin  %>
             <!-- Heading -->
             <div class="sidebar-heading">
                 Articles
@@ -100,7 +100,7 @@
                     <i class="fas fa-swatchbook"></i>
                     <span>Review Articles</span></a>
             </li>
-            <% else %>
+            <% elsif current_user.has_role? :editor %>
             <li class="nav-item <%= (controller_name == 'articles' and action_name == "my_articles") ? 'active' : ''%>">
                 <a class="nav-link" href="<%= my_articles_path %>">
                     <i class="fas fa-swatchbook"></i>

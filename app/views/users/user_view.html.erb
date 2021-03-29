@@ -1,0 +1,37 @@
+<span class="mb-4 float-left w-100">
+<%= render_breadcrumbs %>
+</span>
+<div class="card shadow mb-4">
+	<div class="card-header py-3">
+		<h6 class="m-0 font-weight-bold text-primary">
+			<%= @user.full_name %><br>
+			<%= @user.display_roles%>
+			</h6>
+	</div>
+	<div class="card-body">
+		<div class="row">
+			<div class="col-md-3">
+				<span>Email: <b><%= @user.email %></b></span><br>
+				<span>Gender: <b><%= @user.gender.nil? ? 'N/A' : @user.gender %></b></span><br>
+				<span>Dob: <b><%= @user.dob.nil? ? 'N/A' : @user.dob.strftime("%d %B, %Y") %></b></span><br>
+				<span>Country: <b><%= @user.country.nil? ? 'N/A' : @user.country.name %></b></span><br>
+				<span>Language: <b><%= @user.language.nil? ? 'N/A' : @user.language.name %></b></span><br>
+			</div>
+			<div class="col-md-4">
+				<span>Created at: <b><%= @user.created_at.nil? ? 'N/A' : @user.created_at %></b></span><br>
+				<span>Confirmed at: <b><%= @user.confirmed_at.nil? ? 'N/A' : @user.confirmed_at %></b></span><br>
+				<span>Sign in count: <b><%= @user.sign_in_count.nil? ? 'N/A' : @user.sign_in_count %></b></span><br>
+				<span>current sign in at: <b><%= @user.current_sign_in_at.nil? ? 'N/A' : @user.current_sign_in_at %></b></span><br>
+				<span>current sign in ip: <b><%= @user.current_sign_in_ip.nil? ? 'N/A' : @user.current_sign_in_ip %></b></span><br>
+			</div>
+			<div class="col-md-3">
+				<span>Language score: <b><%= @user.language_score %></b></span><br>
+				<span>Bad mark: <b><%= @user.bad_mark %></b></span><br>
+				<span>Blocked: <b><%= @user.blocked %></b></span><br>
+				<span>Last blocked at: <b><%= @user.last_blocked_at.nil? ? 'N/A' : @user.last_blocked_at %></b></span><br>
+				<span>No of times blocked: <b><%= @user.no_of_times_blocked.nil? ? 'N/A' : @user.no_of_times_blocked %></b></span><br>
+			</div>
+		</div>
+		
+	</div>
+</div>
