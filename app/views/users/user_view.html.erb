@@ -1,35 +1,55 @@
 <span class="mb-4 float-left w-100">
-<%= render_breadcrumbs %>
+	<%= render_breadcrumbs %>
 </span>
 <div class="card shadow mb-4">
-	<div class="card-header py-3">
+	<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 		<h6 class="m-0 font-weight-bold text-primary">
 			<%= @user.full_name %><br>
-			<%= @user.display_roles%>
-			</h6>
+			<%= @user.display_roles %>
+		</h6>
+		<div style="display: flex;align-items: center;">
+			<b class="mr-2">Block this user: </b>
+				<label class="switch block float-right mb-0">
+				<%= check_box_tag nil, nil, @user.blocked?, data: { reflex: "click->AdminActions#toggle", id: @user.id } %>
+				<span class="slider block round"></span>
+			</label>
+			<b class="mr-2 ml-4">Editor: </b>
+				<label class="switch float-right mb-0">
+				<%= check_box_tag nil, nil, (@user.has_role? :editor), data: { reflex: "click->AdminActions#toggle_editor", id: @user.id } %>
+				<span class="slider round"></span>
+			</label>
+			<b class="mr-2 ml-4">Tutor: </b>
+				<label class="switch float-right mb-0">
+				<%= check_box_tag nil, nil, (@user.has_role? :tutor), data: { reflex: "click->AdminActions#toggle_tutor", id: @user.id } %>
+				<span class="slider round"></span>
+			</label>
+		</div>
 	</div>
 	<div class="card-body">
 		<div class="row">
-			<div class="col-md-3">
-				<span>Email: <b><%= @user.email %></b></span><br>
-				<span>Gender: <b><%= @user.gender.nil? ? 'N/A' : @user.gender %></b></span><br>
-				<span>Dob: <b><%= @user.dob.nil? ? 'N/A' : @user.dob.strftime("%d %B, %Y") %></b></span><br>
-				<span>Country: <b><%= @user.country.nil? ? 'N/A' : @user.country.name %></b></span><br>
-				<span>Language: <b><%= @user.language.nil? ? 'N/A' : @user.language.name %></b></span><br>
+			<div class="col-md-4">
+				<span>Email: <b class="float-right"><%= @user.email %></b></span><br>
+				<span>Gender: <b class="float-right"><%= @user.gender.nil? ? 'N/A' : @user.gender %></b></span><br>
+				<span>Dob: <b class="float-right"><%= @user.dob.nil? ? 'N/A' : @user.dob.strftime("%d %B, %Y") %></b></span><br>
+				<span>Country: <b class="float-right"><%= @user.country.nil? ? 'N/A' : @user.country.name %></b></span><br>
+				<span>Language: <b class="float-right"><%= @user.language.nil? ? 'N/A' : @user.language.name %></b></span><br>
 			</div>
 			<div class="col-md-4">
-				<span>Created at: <b><%= @user.created_at.nil? ? 'N/A' : @user.created_at %></b></span><br>
-				<span>Confirmed at: <b><%= @user.confirmed_at.nil? ? 'N/A' : @user.confirmed_at %></b></span><br>
-				<span>Sign in count: <b><%= @user.sign_in_count.nil? ? 'N/A' : @user.sign_in_count %></b></span><br>
-				<span>current sign in at: <b><%= @user.current_sign_in_at.nil? ? 'N/A' : @user.current_sign_in_at %></b></span><br>
-				<span>current sign in ip: <b><%= @user.current_sign_in_ip.nil? ? 'N/A' : @user.current_sign_in_ip %></b></span><br>
+				<span>Created at: <b class="float-right"><%= @user.created_at.nil? ? 'N/A' : @user.created_at %></b></span><br>
+				<span>Confirmed at: <b class="float-right"><%= @user.confirmed_at.nil? ? 'N/A' : @user.confirmed_at %></b></span><br>
+				<span>Sign in count: <b class="float-right"><%= @user.sign_in_count.nil? ? 'N/A' : @user.sign_in_count %></b></span><br>
+				<span>Current sign in at: <b class="float-right"><%= @user.current_sign_in_at.nil? ? 'N/A' : @user.current_sign_in_at %></b></span><br>
+				<span>Current sign in ip: <b class="float-right"><%= @user.current_sign_in_ip.nil? ? 'N/A' : @user.current_sign_in_ip %></b></span><br>
 			</div>
-			<div class="col-md-3">
-				<span>Language score: <b><%= @user.language_score %></b></span><br>
-				<span>Bad mark: <b><%= @user.bad_mark %></b></span><br>
-				<span>Blocked: <b><%= @user.blocked %></b></span><br>
-				<span>Last blocked at: <b><%= @user.last_blocked_at.nil? ? 'N/A' : @user.last_blocked_at %></b></span><br>
-				<span>No of times blocked: <b><%= @user.no_of_times_blocked.nil? ? 'N/A' : @user.no_of_times_blocked %></b></span><br>
+			<div class="col-md-4">
+				<span>Language score: <b class="float-right"><%= @user.language_score %></b></span><br>
+				<span>Bad mark: <b class="float-right"><%= @user.bad_mark %></b></span><br>
+				<span>Blocked: <b class="float-right"><%= @user.blocked %></b></span><br>
+				<span>Last blocked at: <b class="float-right"><%= @user.last_blocked_at.nil? ? 'N/A' : @user.last_blocked_at %></b></span><br>
+				<span>No of times blocked: <b class="float-right"><%= @user.no_of_times_blocked.nil? ? 'N/A' : @user.no_of_times_blocked %></b></span><br>
+			</div>
+			<div class="col-md-2">
+				
 			</div>
 			<div class="col-md-12 mt-2">
 				<h4><u>Short bio</u></h4>
@@ -39,36 +59,16 @@
 		
 	</div>
 </div>
-
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
-		<h6 class="m-0 font-weight-bold text-primary">Actions</h6>
+		<h6 class="m-0 font-weight-bold text-primary">Speaking statistics</h6>
 	</div>
 	<div class="card-body">
-		<a href="#" class="btn btn-danger btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-lock"></i>
-                                        </span>
-                                        <span class="text">Block this user</span>
-                                    </a>
-        <a href="#" class="btn btn-warning btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-unlock"></i>
-                                        </span>
-                                        <span class="text">Unblock this user</span>
-                                    </a>
-        <a href="#" class="btn btn-primary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-exchange-alt"></i>
-                                        </span>
-                                        <span class="text">Change User Role</span>
-                                    </a>
-		
 	</div>
 </div>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
-		<h6 class="m-0 font-weight-bold text-primary">Speaking statistics</h6>
+		<h6 class="m-0 font-weight-bold text-primary">Alerts made to this user</h6>
 	</div>
 	<div class="card-body">
 	</div>

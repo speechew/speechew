@@ -7,6 +7,7 @@ class Ability
     user ||= User.new
     if user.has_role? :admin
         can :manage, :all
+        can :update, User
     elsif user.has_role? :editor
         can :index, SpeakNow
         # Article Access

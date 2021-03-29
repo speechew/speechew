@@ -45,6 +45,10 @@ class User < ApplicationRecord
       self.roles.collect(&:name).each do |r|
         if r.to_s == "admin"
           rl = rl + " " + '<span class="badge badge-success">'+r.to_s+'</span>'
+        elsif r.to_s == "tutor"
+          rl = rl + " " + '<span class="badge badge-info">'+r.to_s+'</span>'
+        elsif r.to_s == "editor"
+          rl = rl + " " + '<span class="badge badge-primary">'+r.to_s+'</span>'
         else
           rl = rl + " " + '<span class="badge badge-dark">'+r.to_s+'</span>'
         end
