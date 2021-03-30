@@ -1,3 +1,47 @@
-<h1>SpeakNow#index</h1>
-<p>Find me in app/views/speak_now/index.html.erb</p>
-<%= current_user.blocked %>
+<h1>Speak Now</h1>
+<div class="row">
+
+	<div class="col-xl-3 col-md-6 mb-4">
+		<div class="card border-left-success shadow h-100 py-2">
+			<div class="card-body">
+				<div class="row no-gutters align-items-center">
+					<div class="col mr-2">
+						<div class="text-xs font-weight-bold text-success text-uppercase mb-1">Online Users</div>
+						<input type="hidden" id="uid" value="<%= current_user.id %>">
+						<div class="h5 mb-0 font-weight-bold text-gray-800" id="usr_count">0</div>
+					</div>
+					<div class="col-auto">
+						<i class="fas fa-headset fa-2x text-gray-300"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Earnings (Monthly) Card Example -->
+	<div class="col-xl-3 col-md-6 mb-4">
+		<div class="card border-left-info shadow h-100 py-2">
+			<div class="card-body">
+				<div class="row no-gutters align-items-center">
+					<div class="col mr-2">
+						<div class="text-xs font-weight-bold text-info text-uppercase mb-1">Online Tutors</div>
+						<div class="row no-gutters align-items-center">
+							<div class="col-auto">
+								<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-auto">
+						<i class="fas fa-chalkboard-teacher fa-2x text-gray-300"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<ul id="online-users" class="d-none">
+	<%= render partial: "users/online", collection: User.online, as: :user %>
+</ul>
+<script type="text/javascript">
+	$("#usr_count").html($('ul#online-users li').length);
+</script>

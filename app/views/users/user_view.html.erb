@@ -42,7 +42,7 @@
 				<span>Current sign in ip: <b class="float-right"><%= @user.current_sign_in_ip.nil? ? 'N/A' : @user.current_sign_in_ip %></b></span><br>
 			</div>
 			<div class="col-md-4">
-				<span>Language score: <b class="float-right"><%= @user.language_score %></b></span><br>
+				<span>Language score: <b class="float-right"><%= @user.language_score.nil? ? 'N/A' : @user.language_score %></b></span><br>
 				<span>Bad mark: <b class="float-right"><%= @user.bad_mark %></b></span><br>
 				<span>Blocked: <b class="float-right"><%= @user.blocked %></b></span><br>
 				<span>Last blocked at: <b class="float-right"><%= @user.last_blocked_at.nil? ? 'N/A' : @user.last_blocked_at %></b></span><br>

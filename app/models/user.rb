@@ -2,8 +2,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :trackable, :confirmable
-	rolify
+  :recoverable, :rememberable, :validatable, :trackable, :confirmable
+  rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -14,6 +14,7 @@ class User < ApplicationRecord
   belongs_to :country, optional: true
   belongs_to :language, optional: true
   before_save :set_fullname
+  before_save :update_blocking_details
 
   validates :email, presence: true, uniqueness: true
   validates :first_name, presence: true
@@ -55,5 +56,18 @@ class User < ApplicationRecord
       end
     end
     return rl.html_safe
+  end
+
+  def update_blocking_details
+    if blocked_was != self.blocked
+      if self.blocked == true
+        self.last_blocked_at = Time.now
+        self.no_of_times_blocked+=1
+      end
+    end
+  end
+  def self.online
+    ids = ActionCable.server.pubsub.redis_connection_for_subscriptions.smembers "online"
+    where(id: ids)
   end
 end
