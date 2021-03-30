@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :rooms
   get 'user-guides', to: 'user_guides#index'
   get 'user-settings', to: 'user_settings#index'
   resources :articles

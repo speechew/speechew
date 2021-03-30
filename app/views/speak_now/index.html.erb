@@ -39,9 +39,9 @@
 		</div>
 	</div>
 </div>
-<div class="row">
+<div class="row" style="margin-bottom: 50px;">
 	<div class="col-md-4">
-		<div class="card shadow mb-4" style="height: 500px;">
+		<div class="card shadow" style="height: 595px;">
 			<!-- Card Header - Dropdown -->
 			<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 				<h6 class="m-0 font-weight-bold text-primary">Questions for speaking</h6>
@@ -56,14 +56,18 @@
 		</div>
 	</div>
 	<div class="col-md-8">
-		<div class="card shadow mb-4" style="height: 500px;">
+		<div class="card shadow" style="height: 595px;">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Basic Card Example</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Speak</h6>
                                 </div>
                                 <div class="card-body text-center">
                                     
-<iframe width="100%" height="100%" src="https://www.youtube.com/embed/tgbNymZ7vqY" style="max-width: 1280px;max-height: 768px;">
-</iframe>
+<div data-controller='video-chat'
+     data-video-chat-session="<%= session.id %>"
+     data-video-chat-id="2">
+  <div data-target='video-chat.remote_videos'></div>
+  <video data-target='video-chat.local_video' autoplay class="w-100 h-100"></video>
+</div>
                                 </div>
                             </div>
 	</div>
