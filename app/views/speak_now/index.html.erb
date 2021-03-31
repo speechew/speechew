@@ -18,18 +18,10 @@
 	<div class="col-md-6">
 		<div class="card shadow" style="height: 470px;">
                                 <div class="card-header py-3">
-                                    <button class="btn btn-sm btn-primary">5 Minute Session</button>
-                                    <button class="btn btn-sm btn-primary disabled">10 Minute Session</button>
-                                    <button class="btn btn-sm btn-primary disabled">15 Minute Session</button>
+                                    <button class="btn btn-sm btn-primary" id="start-call-btn">5 Minute Session</button>
                                 </div>
-                                <div class="card-body text-center">
-                                    
-<div data-controller='video-chat'
-     data-video-chat-session="<%= session.id %>"
-     data-video-chat-id="2">
-  <div data-target='video-chat.remote_videos'></div>
-  <video data-target='video-chat.local_video' autoplay class="w-100 h-100" style="max-height: 364px;"></video>
-</div>
+                                <div class="card-body text-center" id="speak-now-outer">
+                                   
                                 </div>
                             </div>
 	</div>

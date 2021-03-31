@@ -35,6 +35,11 @@ class RoomsController < ApplicationController
 	  @room.save
   end
 
+  def create_room
+    @room = Room.create(:name => SecureRandom.hex(20))
+    render layout: false
+  end
+
   private
     def set_room
       @room = Room.find(params[:id])

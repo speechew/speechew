@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
 	check_authorization :unless => :devise_controller?
 	before_action :configure_permitted_parameters, if: :devise_controller?
+	require 'securerandom'
 
 	rescue_from CanCan::AccessDenied do |exception|
 		redirect_to "/", :alert => exception.message

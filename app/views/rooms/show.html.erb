@@ -1,6 +1,6 @@
 <div data-controller='video-chat'
      data-video-chat-session="<%= session.id %>"
-     data-video-chat-id="<%= @room.id %>">
+     data-video-chat-id="<%= @room.name %>">
   <div data-target='video-chat.remote_videos'></div>
   <video data-target='video-chat.local_video' autoplay></video>
 </div>

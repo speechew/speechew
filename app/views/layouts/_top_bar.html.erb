@@ -5,6 +5,7 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
+                    <input type="hidden" id="uid" value="<%= current_user.id %>">
 <ul id="online-users" class="d-none">
     <%= render partial: "users/online", collection: User.online, as: :user %>
 </ul>

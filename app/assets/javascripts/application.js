@@ -24,6 +24,7 @@
 //= require turbolinks
 //= require_tree .
 (function() {
+
   $(document).on('turbolinks:load', function() {
     var i, table, tableElementId, tableElementIds;
     tableElementIds = ['#topics-table', '#pages-table', '#knowledge-books-table', '#tags-table', '#religions-table', '#users-table', '#religions-table', '#languages-table', '#question-sets-table', '#countries-table', '#categories-table','#articles-table'];
@@ -45,6 +46,27 @@
       });
       i++;
     }
+
+    $("#start-call-btn").click(function(){
+
+      navigator.getUserMedia = navigator.getUserMedia ||
+      navigator.webkitGetUserMedia ||
+      navigator.mozGetUserMedia;
+
+      if (navigator.getUserMedia) {
+        navigator.getUserMedia({ audio: true, video: true },
+          function(stream) {
+           $.get("/start_speaking");
+         },
+         function(err) {
+           if(err.name == "NotAllowedError"){
+            alert("You need to allow acceess to your web cam and microphone.");
+           }
+         });
+      } else {
+       console.log("getUserMedia not supported");
+     }
+   });
   });
 
 }).call(this);

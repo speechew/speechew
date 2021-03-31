@@ -14,7 +14,7 @@
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body id="page-top">
+<body id="page-top" data-turbolinks="<%= controller_name == "speak_now" ? 'false' : 'true' %>">
   <div id="wrapper">
     <!-- Sidebar -->
     <%= render "layouts/left_panel" %>
