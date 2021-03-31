@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_31_083354) do
+ActiveRecord::Schema.define(version: 2021_03_31_152643) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -62,6 +62,11 @@ ActiveRecord::Schema.define(version: 2021_03_31_083354) do
     t.integer "status", default: 0
     t.text "about"
     t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "ask_doubts", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "categories", force: :cascade do |t|
@@ -170,6 +175,11 @@ ActiveRecord::Schema.define(version: 2021_03_31_083354) do
 
   create_table "rooms", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "suggestion_panels", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -10,7 +10,11 @@ admin = User.new(
  password: '12345678',
  password_confirmation: '12345678', 
  first_name: 'Emmanu', 
- last_name: 'Varghese'
+ last_name: 'Varghese',
+ dob:Date.today,
+ gender: 1,
+ bio: "hello world!",
+ confirmed_at: Time.now
 )
 admin.save
 admin.add_role "admin"

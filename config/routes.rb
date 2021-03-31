@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'suggestion-panel', to: 'suggestion_panel#index'
+  get 'ask-doubt', to: 'ask_doubt#index'
   resources :rooms
   get 'user-guides', to: 'user_guides#index'
   get 'user-settings', to: 'user_settings#index'

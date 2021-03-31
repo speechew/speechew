@@ -84,6 +84,11 @@
                     <span>Settings</span></a>
             </li>
 
+            <li class="nav-item <%= controller_name == 'suggestion_panel' ? 'active' : ''%>">
+                <a class="nav-link" href="<%= suggestion_panel_path %>">
+                    <i class="fas fa-comments"></i>
+                    <span>Suggestion Panel</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">

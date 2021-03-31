@@ -241,3 +241,11 @@ video
   padding: 10px;
   float: left;
 }
+.messages-list ul{
+  list-style: none;
+  padding: 0px;
+}
+.toggle-window{
+  font-size: 18px;
+  font-weight: bold;
+}

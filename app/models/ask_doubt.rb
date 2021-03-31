@@ -1,0 +1,2 @@
+class AskDoubt < ApplicationRecord
+end

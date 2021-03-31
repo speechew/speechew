@@ -1,0 +1,21 @@
+  <div id="conversations-list">
+  <div class="panel panel-default" data-conversation-id="<%= @conversation.id %>">
+    <div class="panel-heading d-flex flex-row align-items-center justify-content-between">
+      <%= link_to @conversation.opposed_user(User.find(1)).full_name, '', class: 'toggle-window' %>
+    </div>
+
+    <div class="panel-body">
+      <div class="messages-list">
+        <ul>
+          <%= render 'conversations/conversation_content', messages: @conversation.messages, user: current_user %>
+        </ul>
+      </div>
+      <form class="new_message">
+        <input name="conversation_id" type="hidden" value="<%= @conversation.id %>">
+        <input name="user_id" type="hidden" value="<%= current_user.id %>">
+        <textarea name="body" class="form-control"></textarea>
+        <input type="submit" class="btn btn-success mt-2 mb-2 float-right" value="Send">
+      </form>
+    </div>
+  </div>
+</div>

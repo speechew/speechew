@@ -1,0 +1,2 @@
+module SuggestionPanelHelper
+end

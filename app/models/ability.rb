@@ -11,6 +11,8 @@ class Ability
     elsif user.has_role? :editor
         can :manage, Message
         can :manage, Conversation
+        can :index, AskDoubt
+
         can :index, SpeakNow
         # Article Access
         can :new, Article
@@ -28,6 +30,7 @@ class Ability
     elsif user.has_role? :student
         can :manage, Message
         can :manage, Conversation
+        can :index, AskDoubt
         can :index, SpeakNow
         # Article Access
         can :read, Article, status: 'Published'

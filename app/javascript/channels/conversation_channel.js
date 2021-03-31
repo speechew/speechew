@@ -4,6 +4,7 @@ consumer.conversation = consumer.subscriptions.create("ConversationChannel", {
   connected: function() {},
   disconnected: function() {},
   received: function(data) {
+    // alert(data['message']);
     var conversation = $('#conversations-list').find("[data-conversation-id='" + data['conversation_id'] + "']");
     conversation.find('.messages-list').find('ul').append(data['message']);
 

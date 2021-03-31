@@ -15,6 +15,7 @@ class User < ApplicationRecord
   belongs_to :language, optional: true
   before_save :set_fullname
   before_save :update_blocking_details
+  after_create :set_suggestion_chat
 
   validates :email, presence: true, uniqueness: true
   validates :first_name, presence: true
@@ -72,5 +73,9 @@ class User < ApplicationRecord
   def self.online
     ids = ActionCable.server.pubsub.redis_connection_for_subscriptions.smembers "online"
     where(id: ids)
+  end
+
+  def set_suggestion_chat
+    Conversation.create(:sender_id => self.id, :recipient_id => 1)
   end
 end

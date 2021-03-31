@@ -1,0 +1,29 @@
+<h1>Ask Doubt</h1>
+<div class="row">
+  <div class="col-md-9">
+
+    <ul id="conversations-list" class="list-group">
+      <% @conversations.each do |conversation| %>
+        <%= render 'conversations/conversation', conversation: conversation, user: current_user %>
+      <% end %>
+    </ul>
+
+  </div>
+
+  <div class="col-md-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Tutors list</h3>
+      </div>
+      <div class="panel-body">
+        <div class="list-group">
+
+          <% @users.each do |user| %>
+            <%= link_to user.full_name, conversations_path(user_id: user), remote: true, method: :post, class: "list-group-item list-group-item-action" %>
+
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
