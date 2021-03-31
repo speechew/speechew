@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_30_143245) do
+ActiveRecord::Schema.define(version: 2021_03_31_083354) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -71,6 +71,14 @@ ActiveRecord::Schema.define(version: 2021_03_30_143245) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "conversations", force: :cascade do |t|
+    t.integer "recipient_id"
+    t.integer "sender_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipient_id", "sender_id"], name: "index_conversations_on_recipient_id_and_sender_id", unique: true
+  end
+
   create_table "countries", force: :cascade do |t|
     t.string "name"
     t.string "country_code"
@@ -104,6 +112,16 @@ ActiveRecord::Schema.define(version: 2021_03_30_143245) do
     t.boolean "deleted", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.integer "user_id", null: false
+    t.integer "conversation_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "pages", force: :cascade do |t|
@@ -218,6 +236,8 @@ ActiveRecord::Schema.define(version: 2021_03_30_143245) do
   add_foreign_key "article_categories", "categories"
   add_foreign_key "articles", "users"
   add_foreign_key "knowledge_chapters", "knowledge_books"
+  add_foreign_key "messages", "conversations"
+  add_foreign_key "messages", "users"
   add_foreign_key "question_set_topics", "question_sets"
   add_foreign_key "question_set_topics", "topics"
   add_foreign_key "questions", "question_sets"

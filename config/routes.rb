@@ -19,5 +19,11 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#index'
   root "speak_now#index"
   get "start_speaking", to: 'rooms#create_room'
+  resources :conversations, only: [:create] do
+    member do
+      post :close
+    end
+  end
+  resources :messages, only: [:create]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -9,6 +9,8 @@ class Ability
         can :manage, :all
         can :update, User
     elsif user.has_role? :editor
+        can :manage, Message
+        can :manage, Conversation
         can :index, SpeakNow
         # Article Access
         can :new, Article
@@ -24,6 +26,8 @@ class Ability
         can :index, UserGuide
         can :update, User, id: user.id
     elsif user.has_role? :student
+        can :manage, Message
+        can :manage, Conversation
         can :index, SpeakNow
         # Article Access
         can :read, Article, status: 'Published'

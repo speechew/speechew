@@ -23,6 +23,9 @@ class User < ApplicationRecord
   validates :gender, presence: true
   validates :bio, presence: true
 
+  has_many :messages
+  has_many :conversations, foreign_key: :sender_id
+
   def set_fullname
     self.full_name = "#{self.first_name} #{self.last_name}"
   end
