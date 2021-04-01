@@ -34,6 +34,7 @@ class Ability
         can :read, Conversation, sender_id: user.id
         can :update, Conversation, sender_id: user.id
 
+        can :manage, Room
         can :index, SpeakNow
         # Article Access
         can :read, Article, status: 'Published'
