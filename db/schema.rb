@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_31_152643) do
+ActiveRecord::Schema.define(version: 2021_04_01_045517) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -64,11 +64,6 @@ ActiveRecord::Schema.define(version: 2021_03_31_152643) do
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
-  create_table "ask_doubts", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.boolean "deleted", default: false
@@ -81,6 +76,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_152643) do
     t.integer "sender_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "read", default: false
     t.index ["recipient_id", "sender_id"], name: "index_conversations_on_recipient_id_and_sender_id", unique: true
   end
 

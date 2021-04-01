@@ -5,14 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Country.create(:name => "India",:country_code => "IN",:continent_name => "Asia")
+Language.create(:name => "English",:language_code => "en")
 admin = User.new(
  email: 'admin@admin.com',
- password: '12345678',
- password_confirmation: '12345678', 
+ password: '123456',
+ password_confirmation: '123456', 
  first_name: 'Emmanu', 
  last_name: 'Varghese',
  dob:Date.today,
  gender: 1,
+ country_id:1,
+ language_id:1,
  bio: "hello world!",
  confirmed_at: Time.now
 )

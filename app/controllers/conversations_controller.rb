@@ -12,7 +12,7 @@ class ConversationsController < ApplicationController
 
     def close
     @conversation = Conversation.find(params[:id])
-
+    @conversation.update(:read => true)
     session[:conversations].delete(@conversation.id)
 
     respond_to do |format|
