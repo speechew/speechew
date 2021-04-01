@@ -17,13 +17,24 @@
 	</div>
 	<div class="col-md-6">
 		<div class="card shadow" style="height: 470px;">
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <button class="btn btn-sm btn-primary" id="start-call-btn">5 Minute Session</button>
-                                    <div class="countdown"></div>
-                                </div>
-                                <div class="card-body text-center" id="speak-now-outer">
-                                   
-                                </div>
-                            </div>
+			<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+				<a class="btn btn-sm btn-primary" href="<%= start_speaking_path %>" data-remote="true">5 Minute Session</a>
+				<button type="button" class="btn btn-danger" id="stop-video-btn">Danger</button>
+
+				<div id="speaking-status" style="width: 120px;text-align: right;font-size: 18px;"></div>
+			</div>
+			<div class="card-body text-center" id="speak-now-outer">
+				<% if !params[:call].nil? and params[:call] == "true" and !current_user.partner_token.nil? and current_user.partner_token_expiry > Time.now %>
+				<div data-controller='video-chat'
+				data-video-chat-session="<%= session.id %>"
+				data-video-chat-id="<%= current_user.partner_token %>" class="w-100 h-100" style="max-width: 600px;max-height: 800px;margin: 0 auto;position: relative;">
+				<div data-target='video-chat.remote_videos' class="w-100 h-100 remote-video-outer">
+					<img src="<%= image_url("searching_user.gif") %>" class="w-100 h-100 loading-user">
+				</div>
+				<video data-target='video-chat.local_video' autoplay style="width: 128px; height: 72px;position: absolute;bottom: 0px;right: -16px;"></video>
+			</div>
+			<% end %>
+		</div>
 	</div>
+</div>
 </div>

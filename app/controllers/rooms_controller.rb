@@ -36,7 +36,19 @@ class RoomsController < ApplicationController
   end
 
   def create_room
-    @room = Room.create(:name => SecureRandom.hex(20))
+    if User.online.count < 2
+      ActionCable.server.broadcast('notification-'+current_user.id.to_s+'', message: 'No users online. Try again after some time.')
+    else
+      @room = Room.create(:name => SecureRandom.hex(20))
+    end
+    render layout: false
+  end
+
+  def search_partner
+    user = User.where.not(:id => current_user.id).online.sample
+    current_user.update(:in_call => true,:partner_token => params[:partner_token],:partner_token_expiry => Time.now+10.seconds)
+    user.update(:in_call => true,:partner_token => params[:partner_token],:partner_token_expiry => Time.now+10.seconds)
+    ActionCable.server.broadcast('notification-'+user.id.to_s+'', message: 'incoming')
     render layout: false
   end
 

@@ -249,3 +249,6 @@ video
   font-size: 18px;
   font-weight: bold;
 }
+.remote-video-outer video{
+  width: 100%;
+}

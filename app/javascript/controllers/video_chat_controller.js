@@ -9,11 +9,11 @@ export default class extends Controller {
     this.pcPeers = {}
     this.ice = {
       "iceServers": [
-        {
-          urls: 'turn:turn.vaas.me',
-          credential: 'driftingruby',
-          username: 'driftingruby'
-        },
+      {
+        urls: 'turn:turn.vaas.me',
+        credential: 'driftingruby',
+        username: 'driftingruby'
+      },
       ]
     }
     this.JOIN_ROOM = "JOIN_ROOM"
@@ -55,19 +55,37 @@ export default class extends Controller {
         },
         received(data) {
           if (data.from === _this.currentUser) return
-          switch (data.type) {
-            case _this.JOIN_ROOM:
+            switch (data.type) {
+              case _this.JOIN_ROOM:
               return _this.joinRoom(data)
-            case _this.EXCHANGE:
+              case _this.EXCHANGE:
+              $(".loading-user").remove();
+              var timer2 = "5:01";
+              var interval = setInterval(function() {
+
+
+                var timer = timer2.split(':');
+                //by parsing integer, I avoid all extra string processing
+                var minutes = parseInt(timer[0], 10);
+                var seconds = parseInt(timer[1], 10);
+                --seconds;
+                minutes = (seconds < 0) ? --minutes : minutes;
+                if (minutes < 0) clearInterval(interval);
+                seconds = (seconds < 0) ? 59 : seconds;
+                seconds = (seconds < 10) ? '0' + seconds : seconds;
+                //minutes = (minutes < 10) ?  minutes : minutes;
+                $('#speaking-status').html(minutes + ':' + seconds);
+                timer2 = minutes + ':' + seconds;
+              }, 1000);
               if (data.to !== _this.currentUser) return
-              return _this.exchange(data)
-            case _this.REMOVE_USER:
+                return _this.exchange(data)
+              case _this.REMOVE_USER:
               return _this.removeUser(data)
-            default:
+              default:
               return
-          }
-        },
-      })
+            }
+          },
+        })
     }
     return this._subscription
   }
@@ -92,26 +110,27 @@ export default class extends Controller {
       const sdp = JSON.parse(data.sdp)
       let _this = this
       pc.setRemoteDescription(new RTCSessionDescription(sdp))
-        .then(() => {
-          if (sdp.type === "offer") {
-            pc.createAnswer()
-              .then((answer) => {
-                return pc.setLocalDescription(answer)
-              })
-              .then(() => {
-                _this.subscription().send({
-                  type: _this.EXCHANGE,
-                  from: _this.currentUser,
-                  to: data.from,
-                  sdp: JSON.stringify(pc.localDescription)
-                })
-              })
-          }
-        })
+      .then(() => {
+        if (sdp.type === "offer") {
+          pc.createAnswer()
+          .then((answer) => {
+            return pc.setLocalDescription(answer)
+          })
+          .then(() => {
+            _this.subscription().send({
+              type: _this.EXCHANGE,
+              from: _this.currentUser,
+              to: data.from,
+              sdp: JSON.stringify(pc.localDescription)
+            })
+          })
+        }
+      })
     }
   }
 
   removeUser(data) {
+    alert("removeddd");
     let video = document.getElementById(`remoteVideoContainer+${data.from}`)
     video && video.remove()
     delete this.pcPeers[data.from]
@@ -126,33 +145,33 @@ export default class extends Controller {
     }
 
     isOffer && pc
-      .createOffer()
-      .then((offer) => {
-        return pc.setLocalDescription(offer)
+    .createOffer()
+    .then((offer) => {
+      return pc.setLocalDescription(offer)
+    })
+    .then(() => {
+      _this.subscription().send({
+        type: _this.EXCHANGE,
+        from: _this.currentUser,
+        to: userId,
+        sdp: JSON.stringify(pc.localDescription)
       })
-      .then(() => {
-        _this.subscription().send({
-          type: _this.EXCHANGE,
-          from: _this.currentUser,
-          to: userId,
-          sdp: JSON.stringify(pc.localDescription)
-        })
-      })
+    })
 
     pc.onicecandidate = (event) => {
       event.candidate &&
-        _this.subscription().send({
-          type: _this.EXCHANGE,
-          from: _this.currentUser,
-          to: userId,
-          candidate: JSON.stringify(event.candidate)
-        })
+      _this.subscription().send({
+        type: _this.EXCHANGE,
+        from: _this.currentUser,
+        to: userId,
+        candidate: JSON.stringify(event.candidate)
+      })
     }
 
     pc.ontrack = (event) => {
       let id = `remoteVideoContainer+${userId}`
       if (document.getElementById(id) !== null) return
-      const element = document.createElement("video")
+        const element = document.createElement("video")
       element.id = id
       element.autoplay = "autoplay"
       element.srcObject = event.streams[0]

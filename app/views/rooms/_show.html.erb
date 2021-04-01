@@ -1,8 +1,8 @@
 <div data-controller='video-chat'
      data-video-chat-session="<%= session.id %>"
      data-video-chat-id="<%= @room.name %>" class="w-100 h-100" style="max-width: 600px;max-height: 800px;margin: 0 auto;position: relative;">
-  <div data-target='video-chat.remote_videos' class="w-100 h-100">
-  	<img src="<%= image_url("searching_user.gif") %>" class="w-100 h-100">
+  <div data-target='video-chat.remote_videos' class="w-100 h-100 remote-video-outer">
+  	<img src="<%= image_url("searching_user.gif") %>" class="w-100 h-100 loading-user">
   </div>
-  <video data-target='video-chat.local_video' autoplay style="width: 128px; height: 72px;position: absolute;bottom: 0px;right: -16px;"></video>
+  <video data-target='video-chat.local_video' id="video" autoplay style="width: 128px; height: 72px;position: absolute;bottom: 0px;right: -16px;"></video>
 </div>

@@ -1,1 +1,21 @@
-$("#speak-now-outer").html("<%= j render partial: 'show' %>")
+<% if !@room.nil? or @room.persisted? %>
+navigator.getUserMedia = navigator.getUserMedia ||
+navigator.webkitGetUserMedia ||
+navigator.mozGetUserMedia ||
+navigator.mediaDevices.getUserMedia;
+
+if (navigator.getUserMedia) {
+	navigator.getUserMedia({ audio: true, video: true },
+		function(stream) {
+			$("#speak-now-outer").html("<%= j render partial: 'show' %>");
+			$.get("/search_partner?partner_token=<%= @room.name.to_s %>");
+		},
+		function(err) {
+			if(err.name == "NotAllowedError"){
+				alert("You need to allow acceess to your web cam and microphone.");
+			}
+		});
+} else {
+	console.log("getUserMedia not supported");
+}
+<% end %>

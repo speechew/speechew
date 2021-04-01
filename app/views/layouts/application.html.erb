@@ -7,8 +7,8 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+  href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+  rel="stylesheet">
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -24,21 +24,37 @@
         <%= render "layouts/top_bar" %>
         <div class="container-fluid">
           <%- flash.each do |name, msg| 
-                next unless msg.is_a? String -%>
-                <%= content_tag :div, msg.html_safe, class: "alert alert-#{bootstrap_flash_translate(name, msg)}" %>
-              <%- end -%>
+            next unless msg.is_a? String -%>
+            <%= content_tag :div, msg.html_safe, class: "alert alert-#{bootstrap_flash_translate(name, msg)}" %>
+            <%- end -%>
             <%= yield %>
           </div>
         </div>
       </div>
       <div id="global-modal" class="modal fade" data-keyboard="false" data-backdrop="static">
-      <div class="modal-dialog modal-lg" style="min-width:800px;">
-        <div id="inner-global-modal" class="modal-content" ></div>
+        <div class="modal-dialog modal-lg" style="min-width:800px;">
+          <div id="inner-global-modal" class="modal-content" ></div>
+        </div>
       </div>
-    </div>
+      <div id="calling-modal" class="modal fade" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-lg" style="min-width:800px;">
+          <div id="inner-calling-modal" class="modal-content" >
+            <div class="modal-header">
+              <h3>Somebody wants to practice english speaking with you!</h3>
+            </div>
+            <div class="modal-body">
+              Pressing the Accept button will start the call immediately. If you are not in Speak now page. You will be redirected to that page automaticaly.
+              <div class="modal-footer" style="justify-content: center;border-top:0px;">
+    <button class="btn btn-primary" id="call-accept">Accept</button>
+    <a class="btn btn-danger" data-dismiss="modal" href="#">Decline</a>
+  </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
   </html>
-<script type="text/javascript">
-  $("#usr_count").html($('ul#online-users li').length);
-</script>
+  <script type="text/javascript">
+    $("#usr_count").html($('ul#online-users li').length);
+  </script>

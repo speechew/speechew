@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_01_045517) do
+ActiveRecord::Schema.define(version: 2021_04_01_093803) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -221,6 +221,9 @@ ActiveRecord::Schema.define(version: 2021_04_01_045517) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "country_id"
     t.integer "language_id"
+    t.boolean "in_call", default: false
+    t.string "partner_token"
+    t.datetime "partner_token_expiry"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["country_id"], name: "index_users_on_country_id"
     t.index ["email"], name: "index_users_on_email", unique: true
