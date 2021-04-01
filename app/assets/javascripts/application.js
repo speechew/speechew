@@ -61,25 +61,44 @@
          function(err) {
            if(err.name == "NotAllowedError"){
             alert("You need to allow acceess to your web cam and microphone.");
-           }
-         });
+          }
+        });
       } else {
        console.log("getUserMedia not supported");
      }
    });
-      $(document).on('click', '.toggle-window', function(e) {
-    e.preventDefault();
-    var panel = $(this).parent().parent();
-    var messages_list = panel.find('.messages-list');
+    $(document).on('click', '.toggle-window', function(e) {
+      e.preventDefault();
+      var panel = $(this).parent().parent();
+      var messages_list = panel.find('.messages-list');
 
-    panel.find('.panel-body').toggle();
-    panel.attr('class', 'panel panel-default');
+      panel.find('.panel-body').toggle();
+      panel.attr('class', 'panel panel-default');
 
-    if (panel.find('.panel-body').is(':visible')) {
-      var height = messages_list[0].scrollHeight;
-      messages_list.scrollTop(height);
+      if (panel.find('.panel-body').is(':visible')) {
+        var height = messages_list[0].scrollHeight;
+        messages_list.scrollTop(height);
+      }
+    });
+    var timer2 = "5:01";
+    function start_timer(){
+    var interval = setInterval(function() {
+
+
+    var timer = timer2.split(':');
+    //by parsing integer, I avoid all extra string processing
+    var minutes = parseInt(timer[0], 10);
+    var seconds = parseInt(timer[1], 10);
+    --seconds;
+    minutes = (seconds < 0) ? --minutes : minutes;
+    if (minutes < 0) clearInterval(interval);
+    seconds = (seconds < 0) ? 59 : seconds;
+    seconds = (seconds < 10) ? '0' + seconds : seconds;
+    //minutes = (minutes < 10) ?  minutes : minutes;
+    $('.countdown').html(minutes + ':' + seconds);
+    timer2 = minutes + ':' + seconds;
+  }, 1000);
     }
-  });
   });
 
 }).call(this);
