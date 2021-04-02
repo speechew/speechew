@@ -15,6 +15,7 @@ class Ability
         can :update, Conversation, sender_id: user.id
 
         can :index, SpeakNow
+        can :index, GiveFeedback
         # Article Access
         can :new, Article
         can :create, Article
@@ -36,6 +37,7 @@ class Ability
 
         can :manage, Room
         can :index, SpeakNow
+        can :index, GiveFeedback
         # Article Access
         can :read, Article, status: 'Published'
         # User Settings Access

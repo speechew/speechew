@@ -10,7 +10,18 @@ consumer.subscriptions.create("NotificationChannel", {
   },
 
   received(data) {
-  	$("#calling-modal").modal("show");
+  	if(data['message'] == "no_users_online"){
+  		alert("No users online. Try again after some time.");
+  	}else if(data['message'] == "incoming_call"){
+  	  $("#calling-modal").modal("show");
+  	}else if(data['message'] == "all_users_busy"){
+  	  alert("All users busy. Try again after some time.");
+  	  window.onbeforeunload = null;
+  	  $("#speak-now-outer").html("");
+  	  $("#start-speaking-btn").show();
+    $("#stop-video-btn").hide();
+  	}
+  	
     // Called when there's incoming data on the websocket for this channel
   }
 });

@@ -5,6 +5,11 @@ export default class extends Controller {
   static targets = ["remote_videos", "local_video"]
 
   connect() {
+    $("#start-speaking-btn").hide();
+    $("#stop-video-btn").show();
+      window.onbeforeunload = function() {
+  return "Data will be lost if you leave the page, are you sure?";
+};
     this.currentUser = this.data.get("session")
     this.pcPeers = {}
     this.ice = {
@@ -45,6 +50,7 @@ export default class extends Controller {
 
   subscription() {
     if (this._subscription == undefined) {
+
       let _this = this
       this._subscription = consumer.subscriptions.create({ channel: "RoomChannel", id: _this.data.get("id") }, {
         connected() {
@@ -130,7 +136,12 @@ export default class extends Controller {
   }
 
   removeUser(data) {
-    alert("removeddd");
+    window.onbeforeunload = null;
+    $("#speak-now-outer").html("");
+    $("#speak-now-outer").html("<h4>Your session completed.You will be redirected to give feedback page shortly.</h4>");
+    
+    setTimeout(function(){ window.location = "/give-feedback" }, 3000);
+
     let video = document.getElementById(`remoteVideoContainer+${data.from}`)
     video && video.remove()
     delete this.pcPeers[data.from]

@@ -37,7 +37,7 @@ class RoomsController < ApplicationController
 
   def create_room
     if User.online.count < 2
-      ActionCable.server.broadcast('notification-'+current_user.id.to_s+'', message: 'No users online. Try again after some time.')
+      ActionCable.server.broadcast('notification-'+current_user.id.to_s+'', message: 'no_users_online')
     else
       @room = Room.create(:name => SecureRandom.hex(20))
     end
@@ -45,11 +45,41 @@ class RoomsController < ApplicationController
   end
 
   def search_partner
-    user = User.where.not(:id => current_user.id).online.sample
-    current_user.update(:in_call => true,:partner_token => params[:partner_token],:partner_token_expiry => Time.now+10.seconds)
-    user.update(:in_call => true,:partner_token => params[:partner_token],:partner_token_expiry => Time.now+10.seconds)
-    ActionCable.server.broadcast('notification-'+user.id.to_s+'', message: 'incoming')
+    receiver = User.where.not(:id => current_user.id).online
+    if receiver.empty?
+      ActionCable.server.broadcast('notification-'+current_user.id.to_s+'', message: 'no_users_online')
+    else
+      receiver = receiver.sample
+      current_user.update(:in_call => true,:partner_token => params[:partner_token],:partner_token_expiry => Time.now+10.seconds,:search_partner_try => 1)
+      receiver.update(:in_call => true,:partner_token => params[:partner_token],:partner_token_expiry => Time.now+10.seconds)
+      ActionCable.server.broadcast('notification-'+receiver.id.to_s+'', message: 'incoming_call')
+    end
     render layout: false
+  end
+
+  def decline_call
+    call_maker = User.where(:partner_token => current_user.partner_token).first
+    current_user.update(:in_call => false,:partner_token => nil,:partner_token_expiry => nil,:search_partner_try => 0)
+    if call_maker.search_partner_try > 3
+      ActionCable.server.broadcast('notification-'+call_maker.id.to_s+'', message: 'all_users_busy')
+      call_maker.update(:in_call => false,:partner_token => nil,:partner_token_expiry => nil,:search_partner_try => 0)
+    else
+      new_receiver = User.where.not(:id => [current_user.id,call_maker.id]).online
+      if new_receiver.empty?
+        ActionCable.server.broadcast('notification-'+call_maker.id.to_s+'', message: 'all_users_busy')
+        call_maker.update(:in_call => false,:partner_token => nil,:partner_token_expiry => nil,:search_partner_try => 0)
+      else
+        new_receiver = new_receiver.sample
+        new_receiver.update(:in_call => true,:partner_token => call_maker.partner_token,:partner_token_expiry => Time.now+10.seconds)
+        ActionCable.server.broadcast('notification-'+new_receiver.id.to_s+'', message: 'incoming_call')
+        call_maker.update(:search_partner_try => call_maker.search_partner_try+1)
+      end 
+    end
+    render layout: false
+  end
+
+  def free_user
+    current_user.update(:in_call => false,:partner_token => nil,:partner_token_expiry => nil,:search_partner_try => 0)
   end
 
   private

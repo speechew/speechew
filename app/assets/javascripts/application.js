@@ -64,11 +64,19 @@
     
 
     $('#stop-video-btn').click(function() {
-      Turbolinks.visit("/user-guides")
+      window.onbeforeunload = null;
+      $("#speak-now-outer").html("");
+    $("#speak-now-outer").html("<h4>Your session completed.You will be redirected to give feedback page shortly.</h4>");
+    
+    setTimeout(function(){ window.location = "/give-feedback" }, 3000);
     });
 
   $("#call-accept").click(function(){
     window.location = "/speak-now?call=true";
+  });
+  $("#call-reject").click(function(){
+    $.get("/decline-call");
+    $("#calling-modal").modal("hide");
   });
 });
 

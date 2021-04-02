@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'give-feedback', to: 'give_feedback#index'
   get 'suggestion-panel', to: 'suggestion_panel#index'
   get 'ask-doubt', to: 'ask_doubt#index'
   resources :rooms
@@ -22,6 +23,8 @@ Rails.application.routes.draw do
   root "speak_now#index"
   get "start_speaking", to: 'rooms#create_room'
   get "search_partner", to: 'rooms#search_partner'
+  get "decline-call", to: 'rooms#decline_call'
+  get "free-user", to: 'rooms#free_user'
   resources :conversations, only: [:create] do
     member do
       post :close

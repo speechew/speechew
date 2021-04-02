@@ -18,12 +18,12 @@
 	<div class="col-md-6">
 		<div class="card shadow" style="height: 470px;">
 			<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-				<a class="btn btn-sm btn-primary" href="<%= start_speaking_path %>" data-remote="true">5 Minute Session</a>
-				<button type="button" class="btn btn-danger" id="stop-video-btn">Danger</button>
+				<a class="btn btn-sm btn-primary" href="<%= start_speaking_path %>" data-remote="true" id="start-speaking-btn">5 Minute Session</a>
+				<button class="btn btn-sm btn-danger" id="stop-video-btn">End Session</button>
 
 				<div id="speaking-status" style="width: 120px;text-align: right;font-size: 18px;"></div>
 			</div>
-			<div class="card-body text-center" id="speak-now-outer">
+			<div class="card-body text-center d-flex align-items-center" id="speak-now-outer">
 				<% if !params[:call].nil? and params[:call] == "true" and !current_user.partner_token.nil? and current_user.partner_token_expiry > Time.now %>
 				<div data-controller='video-chat'
 				data-video-chat-session="<%= session.id %>"
@@ -38,3 +38,6 @@
 	</div>
 </div>
 </div>
+<script type="text/javascript">
+	$("#stop-video-btn").hide();
+</script>
