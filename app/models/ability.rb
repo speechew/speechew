@@ -16,6 +16,9 @@ class Ability
 
         can :index, SpeakNow
         can :index, GiveFeedback
+        can :create, Feedback
+        can :delete, Feedback, given_to_id: user.id
+        can :read, Feedback, given_to_id: user.id
         # Article Access
         can :new, Article
         can :create, Article
@@ -38,6 +41,9 @@ class Ability
         can :manage, Room
         can :index, SpeakNow
         can :index, GiveFeedback
+        can :create, Feedback
+        can :delete, Feedback, given_to_id: user.id
+        can :read, Feedback, given_to_id: user.id
         # Article Access
         can :read, Article, status: 'Published'
         # User Settings Access

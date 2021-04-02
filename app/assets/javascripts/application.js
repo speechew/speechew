@@ -27,7 +27,7 @@
 
   $(document).on('turbolinks:load', function() {
     var i, table, tableElementId, tableElementIds;
-    tableElementIds = ['#topics-table', '#pages-table', '#knowledge-books-table', '#tags-table', '#religions-table', '#users-table', '#religions-table', '#languages-table', '#question-sets-table', '#countries-table', '#categories-table','#articles-table'];
+    tableElementIds = ['#topics-table', '#pages-table', '#knowledge-books-table', '#tags-table', '#religions-table', '#users-table', '#religions-table', '#languages-table', '#question-sets-table', '#countries-table', '#categories-table','#articles-table', '#feedbacks-table'];
     i = 0;
     while (i < tableElementIds.length) {
       tableElementId = tableElementIds[i];

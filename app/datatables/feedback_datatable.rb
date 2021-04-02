@@ -40,7 +40,7 @@ class FeedbackDatatable < AjaxDatatablesRails::Base
 
   def get_raw_records
     # insert query here
-    Feedback.where(deleted: false)
+    Feedback.where(:given_to_id => options[:ca].id).where(deleted: false)
     
   end
 
