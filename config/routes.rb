@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :feedbacks
   get 'give-feedback', to: 'give_feedback#index'
   get 'suggestion-panel', to: 'suggestion_panel#index'
   get 'ask-doubt', to: 'ask_doubt#index'

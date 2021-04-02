@@ -19,7 +19,7 @@ consumer.subscriptions.create("NotificationChannel", {
   	  window.onbeforeunload = null;
   	  $("#speak-now-outer").html("");
   	  $("#start-speaking-btn").show();
-    $("#stop-video-btn").hide();
+      $("#stop-video-btn").hide();
   	}
   	
     // Called when there's incoming data on the websocket for this channel

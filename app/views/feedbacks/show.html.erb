@@ -1,0 +1,47 @@
+<h3>View Feedback - <%= @feedback.name %></h3>
+
+<p id="notice"><%= notice %></p>
+
+<div class="col-md-12">
+	<div class="panel panel-inverse" data-sortable-id="ui-widget-1">
+		<div class="panel-heading">
+			<h4 class="panel-title">Main Details</h4>
+		</div>
+		<div class="panel-body">
+
+						<p>
+			  <strong>Given to:</strong>
+			  <%= @feedback.given_to_id %>
+			</p>
+			
+						<p>
+			  <strong>Given by:</strong>
+			  <%= @feedback.given_by_id %>
+			</p>
+			
+						<p>
+			  <strong>Fluency:</strong>
+			  <%= @feedback.fluency %>
+			</p>
+			
+						<p>
+			  <strong>Vocabulary:</strong>
+			  <%= @feedback.vocabulary %>
+			</p>
+			
+						<p>
+			  <strong>Grammar:</strong>
+			  <%= @feedback.grammar %>
+			</p>
+			
+						<p>
+			  <strong>Notes:</strong>
+			  <%= @feedback.notes %>
+			</p>
+			
+						<%= link_to 'Edit', edit_feedback_path(@feedback) %> |
+			<%= link_to 'Back', feedbacks_path %>
+		
+		</div>
+	</div>
+</div>

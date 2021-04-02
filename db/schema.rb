@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_02_061320) do
+ActiveRecord::Schema.define(version: 2021_04_02_122827) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -84,6 +84,18 @@ ActiveRecord::Schema.define(version: 2021_04_02_061320) do
     t.string "name"
     t.string "country_code"
     t.integer "continent_name"
+    t.boolean "deleted", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.integer "given_to_id"
+    t.integer "given_by_id"
+    t.integer "fluency"
+    t.integer "vocabulary"
+    t.integer "grammar"
+    t.text "notes"
     t.boolean "deleted", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
