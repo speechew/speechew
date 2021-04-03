@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get "start_speaking", to: 'rooms#create_room'
   get "search_partner", to: 'rooms#search_partner'
   get "decline-call", to: 'rooms#decline_call'
+  get "end-session", to: 'rooms#end_session'
   get "free-user", to: 'rooms#free_user'
   resources :conversations, only: [:create] do
     member do

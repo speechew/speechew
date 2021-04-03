@@ -58,7 +58,7 @@ class RoomsController < ApplicationController
   end
 
   def decline_call
-    call_maker = User.where(:partner_token => current_user.partner_token).first
+    call_maker = User.where.not(:id => current_user.id).where(:partner_token => current_user.partner_token).first
     current_user.update(:in_call => false,:partner_token => nil,:partner_token_expiry => nil,:search_partner_try => 0)
     if call_maker.search_partner_try > 3
       ActionCable.server.broadcast('notification-'+call_maker.id.to_s+'', message: 'all_users_busy')
@@ -80,6 +80,15 @@ class RoomsController < ApplicationController
 
   def free_user
     current_user.update(:in_call => false,:partner_token => nil,:partner_token_expiry => nil,:search_partner_try => 0)
+  end
+
+  def end_session
+    participants = User.where(:partner_token => current_user.partner_token).where("updated_at < ?", 2.minutes.ago)
+    if participants.count < 2
+      current_user.update(:in_call => false,:partner_token => nil,:partner_token_expiry => nil,:search_partner_try => 0)
+    else
+      render layout: false
+    end
   end
 
   private

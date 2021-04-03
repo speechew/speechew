@@ -139,9 +139,8 @@ export default class extends Controller {
     window.onbeforeunload = null;
     $("#speak-now-outer").html("");
     $("#speak-now-outer").html("<h4>Your session completed.You will be redirected to give feedback page shortly.</h4>");
-
-    setTimeout(function(){ window.location = "/give-feedback" }, 3000);
-
+    $.get("/end-session");
+    
     let video = document.getElementById(`remoteVideoContainer+${data.from}`)
     video && video.remove()
     delete this.pcPeers[data.from]

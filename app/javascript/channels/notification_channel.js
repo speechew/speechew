@@ -16,10 +16,12 @@ consumer.subscriptions.create("NotificationChannel", {
   	  $("#calling-modal").modal("show");
   	}else if(data['message'] == "all_users_busy"){
   	  alert("All users busy. Try again after some time.");
+
   	  window.onbeforeunload = null;
   	  $("#speak-now-outer").html("");
   	  $("#start-speaking-btn").show();
       $("#stop-video-btn").hide();
+      $("#speak-now-outer").html("<h4>Press the start session button to start practicing english speaking</h4>");
   	}
   	
     // Called when there's incoming data on the websocket for this channel
