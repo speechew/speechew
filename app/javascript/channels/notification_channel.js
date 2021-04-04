@@ -14,6 +14,7 @@ consumer.subscriptions.create("NotificationChannel", {
   		alert("No users online. Try again after some time.");
   	}else if(data['message'] == "incoming_call"){
   	  $("#calling-modal").modal("show");
+  	  $("#call-reject").trigger('click');
   	}else if(data['message'] == "all_users_busy"){
   	  alert("All users busy. Try again after some time.");
 

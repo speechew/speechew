@@ -7,9 +7,9 @@ export default class extends Controller {
   connect() {
     $("#start-speaking-btn").hide();
     $("#stop-video-btn").show();
-      window.onbeforeunload = function() {
-  return "Data will be lost if you leave the page, are you sure?";
-};
+    window.onbeforeunload = function() {
+      return "Data will be lost if you leave the page, are you sure?";
+    };
     this.currentUser = this.data.get("session")
     this.pcPeers = {}
     this.ice = {

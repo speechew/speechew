@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get "decline-call", to: 'rooms#decline_call'
   get "end-session", to: 'rooms#end_session'
   get "free-user", to: 'rooms#free_user'
+  get "monitor", to: 'rooms#monitor'
   resources :conversations, only: [:create] do
     member do
       post :close

@@ -1,5 +1,8 @@
 <% if current_user.partner_token.nil? %>
-location.reload();
-<% else %>
-window.location.href = '/give-feedback'; //Will take you to Google.
+setTimeout(
+  function() 
+  {
+    window.location.href = '/give-feedback'; //Will take you to Google.
+  }, 5000);
+
 <% end %>

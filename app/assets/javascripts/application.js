@@ -20,9 +20,11 @@
 //= require cocoon
 //= require datatables/jquery.dataTables.min.js
 //= require datatables/dataTables.bootstrap4.min.js
+//= require js/jquery.undoCountdown.js
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
 (function() {
 
   $(document).on('turbolinks:load', function() {
@@ -74,10 +76,21 @@
   $("#call-accept").click(function(){
     window.location = "/speak-now?call=true";
   });
-  $("#call-reject").click(function(){
-    $.get("/decline-call");
+  // $("#call-reject").click(function(){
+  //   $.get("/decline-call");
+  //   $("#calling-modal").modal("hide");
+  // });
+  $("#call-reject").undoCountdown({
+  seconds: 10,
+  term:'Decline',
+  url: "/decline-call",
+  onComplete: function() {
+    if ($('#calling-modal').is(':visible')) {
+      $.get("/decline-call");
     $("#calling-modal").modal("hide");
-  });
+    }
+    
+  }
 });
-
-  }).call(this);
+});
+}).call(this); 
