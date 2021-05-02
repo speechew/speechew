@@ -3,11 +3,9 @@
 one:
   title: MyString
   content: MyText
-  category: one
   deleted: false
 
 two:
   title: MyString
   content: MyText
-  category: two
   deleted: false

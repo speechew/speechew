@@ -57,10 +57,12 @@ gem 'devise'
 gem 'cancancan'
 gem 'rolify'
 gem 'ajax-datatables-rails'
-gem 'coffee-rails'
+gem 'coffee-rails', '~> 5.0'
 gem "select2-rails"
 gem "cocoon"
 gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap4'
 gem "breadcrumbs_on_rails"
 gem "stimulus_reflex", "~> 3.4"
+gem 'activeresource'
+gem "minitest-rails"

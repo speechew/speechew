@@ -14,7 +14,6 @@ class ArticlesTest < ApplicationSystemTestCase
     visit articles_url
     click_on "New Article"
 
-    fill_in "Category", with: @article.category_id
     fill_in "Content", with: @article.content
     check "Deleted" if @article.deleted
     fill_in "Title", with: @article.title
@@ -28,7 +27,6 @@ class ArticlesTest < ApplicationSystemTestCase
     visit articles_url
     click_on "Edit", match: :first
 
-    fill_in "Category", with: @article.category_id
     fill_in "Content", with: @article.content
     check "Deleted" if @article.deleted
     fill_in "Title", with: @article.title
