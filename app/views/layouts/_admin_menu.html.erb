@@ -1,0 +1,49 @@
+            <!-- Heading -->
+            <div class="sidebar-heading mt-2">
+                Admin
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item <%= controller_name == 'dashboard' ? 'active' : ''%>">
+                <a class="nav-link" href="<%= dashboard_path %>">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <%= 'collapsed' if !['countries','languages','topics','question_sets','pages'].include? controller_name %>" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Assets</span>
+                </a>
+                <div id="collapseTwo" class="collapse <%= 'show' if ['countries','languages','topics','question_sets','pages','knowledge_books','categories'].include? controller_name %>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Basic Assets:</h6>
+                        <a class="collapse-item <%= 'active' if controller_name == 'countries' %>" href="<%= countries_path%>">Countries</a>
+                        <a class="collapse-item <%= 'active' if controller_name == 'languages' %>" href="<%= languages_path%>">Languages</a>
+                        <a class="collapse-item <%= 'active' if controller_name == 'topics' %>" href="<%= topics_path%>">Topics</a>
+                        <a class="collapse-item <%= 'active' if controller_name == 'categories' %>" href="<%= categories_path%>">Categories</a>
+                        <a class="collapse-item <%= 'active' if controller_name == 'question_sets' %>" href="<%= question_sets_path%>">Question Sets</a>
+                        <h6 class="collapse-header">Information Assets:</h6>
+                        <a class="collapse-item <%= 'active' if controller_name == 'pages' %>" href="<%= pages_path%>">Pages</a>
+                        <a class="collapse-item <%= 'active' if controller_name == 'knowledge_books' %>" href="<%= knowledge_books_path%>">Knowledge Books</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item <%= 'active' if ['users_list','users'].include? controller_name%>">
+                <a class="nav-link" href="<%= users_list_path %>">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    <span>Users</span></a>
+            </li>
+            <li class="nav-item <%= controller_name == 'user_settings' ? 'active' : ''%>">
+                <a class="nav-link" href="<%= user_settings_path %>">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Settings</span></a>
+            </li>
+
+            <li class="nav-item <%= controller_name == 'suggestion_panel' ? 'active' : ''%>">
+                <a class="nav-link" href="<%= suggestion_panel_path %>">
+                    <i class="fas fa-comments"></i>
+                    <span>Suggestion Panel</span></a>
+            </li>
+<!-- Divider -->
+            <hr class="sidebar-divider">

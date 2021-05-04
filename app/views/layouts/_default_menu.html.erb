@@ -1,0 +1,28 @@
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item <%= controller_name == 'speak_now' ? 'active' : ''%>">
+                <a class="nav-link" href="<%= speak_now_path %>">
+                    <i class="fas fa-microphone-alt"></i>
+                    <span>Speak Now</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Overview</span></a>
+            </li>
+            <li class="nav-item <%= controller_name == 'feedbacks' ? 'active' : ''%>">
+                <a class="nav-link" href="<%= feedbacks_path %>">
+                    <i class="fas fa-comment-dots"></i>
+                    <span>Feedback</span></a>
+            </li>
+            <li class="nav-item <%= controller_name == 'user_guides' ? 'active' : ''%>">
+                <a class="nav-link" href="<%= user_guides_path%>">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Guide</span></a>
+            </li>
+            <li class="nav-item <%= controller_name == 'user_settings' ? 'active' : ''%>">
+                <a class="nav-link" href="<%= user_settings_path %>">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Settings</span></a>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">

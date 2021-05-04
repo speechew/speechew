@@ -1,0 +1,24 @@
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Articles
+            </div>
+            <% if current_user.has_role? :admin %>
+            <li class="nav-item <%= (controller_name == 'articles' and action_name == "review_articles") ? 'active' : ''%>">
+                <a class="nav-link" href="<%= review_articles_path %>">
+                    <i class="fas fa-swatchbook"></i>
+                    <span>Review Articles</span></a>
+            </li>
+            <% elsif current_user.has_role? :editor %>
+            <li class="nav-item <%= (controller_name == 'articles' and action_name == "my_articles") ? 'active' : ''%>">
+                <a class="nav-link" href="<%= my_articles_path %>">
+                    <i class="fas fa-swatchbook"></i>
+                    <span>My Articles</span></a>
+            </li>
+            <% end %>
+            <li class="nav-item <%= (controller_name == 'articles' and action_name == "index") ? 'active' : ''%>">
+                <a class="nav-link" href="<%= articles_path %>">
+                    <i class="fas fa-newspaper"></i>
+                    <span>Articles</span></a>
+            </li>
+
+            <hr class="sidebar-divider d-none d-md-block">
