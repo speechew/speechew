@@ -1,4 +1,7 @@
 class Article < ApplicationRecord
+  default_scope { where(deleted: false) }
+  scope :published, -> { where(:status => "Published") }
+  
   validates :title, uniqueness: true
   validates :about, presence: true
   validates :content, presence: true

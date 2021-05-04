@@ -36,7 +36,7 @@ class KnowledgeBookDatatable < AjaxDatatablesRails::Base
 
   def get_raw_records
     # insert query here
-    KnowledgeBook.where(deleted: false)
+    KnowledgeBook.all
   end
 
   # ==== Insert 'presenter'-like methods below if necessary

@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   add_breadcrumb "Articles", :articles_path
   
   def index
-	 @articles = Article.where(:deleted => false).where(:status => "Published").paginate(page: params[:page], per_page: 4)
+	 @articles = Article.published.paginate(page: params[:page], per_page: 4)
   end
 
   def show

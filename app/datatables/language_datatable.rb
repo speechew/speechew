@@ -36,7 +36,7 @@ class LanguageDatatable < AjaxDatatablesRails::Base
 
   def get_raw_records
     # insert query here
-  Language.where(deleted: false)
+  Language.all
   end
 
   # ==== Insert 'presenter'-like methods below if necessary

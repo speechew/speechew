@@ -34,7 +34,7 @@ class CategoryDatatable < AjaxDatatablesRails::Base
 
   def get_raw_records
     # insert query here
-  Category.where(deleted: false)
+  Category.all
   end
 
   # ==== Insert 'presenter'-like methods below if necessary

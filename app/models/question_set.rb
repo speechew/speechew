@@ -1,5 +1,5 @@
 class QuestionSet < ApplicationRecord
-
+  default_scope { where(deleted: false) }
   validates :title, presence: true, uniqueness: true
 
   has_many :question_set_topics

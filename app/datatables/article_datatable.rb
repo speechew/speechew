@@ -41,9 +41,9 @@ class ArticleDatatable < AjaxDatatablesRails::Base
     where[:status] = params[:status] unless params[:status].nil?
     # insert query here
     if options[:ca].has_role? :admin
-      Article.where(deleted: false).where(where)
+      Article.where(where)
     else
-      Article.where(deleted: false).where(user_id: options[:ca].id).where(where)
+      Article.where(user_id: options[:ca].id).where(where)
     end
   end
 

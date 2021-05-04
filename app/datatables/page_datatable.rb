@@ -36,7 +36,7 @@ class PageDatatable < AjaxDatatablesRails::Base
 
   def get_raw_records
     # insert query here
-  Page.where(deleted: false)
+  Page.all
   end
 
   # ==== Insert 'presenter'-like methods below if necessary

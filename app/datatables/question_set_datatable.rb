@@ -34,7 +34,7 @@ class QuestionSetDatatable < AjaxDatatablesRails::Base
 
   def get_raw_records
     # insert query here
-  QuestionSet.where(deleted: false)
+  QuestionSet.all
   end
 
   # ==== Insert 'presenter'-like methods below if necessary

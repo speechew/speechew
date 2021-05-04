@@ -1,4 +1,5 @@
 class Country < ApplicationRecord
+	default_scope { where(deleted: false) }
 	validates :name, presence: true, uniqueness: true
 	validates :country_code, presence: true, uniqueness: true
 	validates :continent_name, presence: true, presence: true

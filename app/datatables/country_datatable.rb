@@ -38,7 +38,7 @@ class CountryDatatable < AjaxDatatablesRails::Base
 
   def get_raw_records
     # insert query here
-  Country.where(deleted: false)
+  Country.all
   end
 
   # ==== Insert 'presenter'-like methods below if necessary

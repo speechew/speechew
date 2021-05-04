@@ -34,7 +34,7 @@ class TopicDatatable < AjaxDatatablesRails::Base
 
   def get_raw_records
     # insert query here
-  Topic.where(deleted: false)
+  Topic.all
   end
 
   # ==== Insert 'presenter'-like methods below if necessary
