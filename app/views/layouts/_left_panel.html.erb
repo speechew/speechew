@@ -12,13 +12,11 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
             <% if current_user.has_role? :student or current_user.has_role? :editor %>
-            <%= render "layouts/default_menu" %>
+                <%= render "layouts/default_menu" %>
             <% end %>
             <% if current_user.has_role? :admin %>
-
-            <%= render "layouts/admin_menu" %>
+                <%= render "layouts/admin_menu" %>
             <% end %>
-
             <% if current_user.has_role? :student or current_user.has_role? :editor or current_user.has_role? :admin  %>
                 <%= render "layouts/articles_menu" %>
             <% end %>
