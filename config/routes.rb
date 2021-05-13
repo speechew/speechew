@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'speak-now', to: 'speak_now#index'
   get 'dashboard', to: 'dashboard#index'
   root "speak_now#index"
+  # voice call routes
   get "start_speaking", to: 'rooms#create_room'
   get "search_partner", to: 'rooms#search_partner'
   get "decline-call", to: 'rooms#decline_call'
