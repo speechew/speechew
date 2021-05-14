@@ -1,9 +1,17 @@
+<% if params[:category].nil? %>
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h2 class="display-4">Articles</h2>
     <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
   </div>
 </div>
+<% else %>
+<div class="d-flex flex-column flex-lg-row ">
+  <div class="mr-auto">
+    <h3>Category: <%= category_name(params[:category])%></h3> 
+  </div>
+</div>
+<% end %>
 <div class="row">
   <% @articles.each do |article|%>
 <%= render "article_preview",:article => article %>

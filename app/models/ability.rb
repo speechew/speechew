@@ -51,6 +51,8 @@ class Ability
       # User Guides Access
       can :index, UserGuide
       can :update, User, id: user.id
+    else
+      can :read, Article, status: 'Published'
     end
     # Define abilities for the passed in user here. For example:
     #

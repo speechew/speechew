@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-module User
   class UnlocksController < Devise::UnlocksController
     # GET /resource/unlock/new
     # def new
@@ -29,4 +28,3 @@ module User
     #   super(resource)
     # end
   end
-end

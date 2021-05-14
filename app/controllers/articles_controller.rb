@@ -2,6 +2,7 @@
 
 class ArticlesController < ApplicationController
   load_and_authorize_resource
+  skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_article, only: %i[show edit update destroy]
   respond_to :html, :js, :json
 
