@@ -6,21 +6,7 @@
 </div>
 <div class="row">
   <% @articles.each do |article|%>
-  <div class="col-md-6 mb-4">
-  <div class="card" style="min-height: 185px;">
-    <div class="d-flex card-header py-3 justify-content-between align-items-center">
-      <b class="m-0 font-weight-bold text-primary"><%= link_to(article.title, article_path(article)) %></b>
-      <div>
-        <small class="w-100 text-right float-left"><%= article.created_at.strftime('%d/%m/%Y %I:%M %p') %></small>
-      <small class="w-100 text-right float-left"><%= article.user.full_name %></small>
-      </div>
-    </div>
-    <div class="card-body">
-      
-      <%= sanitize(truncate(article.about, length: 120)) %>...
-    </div>
-  </div>
-</div>
+<%= render "article_preview",:article => article %>
 <% end %>
 </div>
 <div class="pagination-outer w-100">
