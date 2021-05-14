@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateConversations < ActiveRecord::Migration[6.0]
   def change
     create_table :conversations do |t|
@@ -6,6 +8,6 @@ class CreateConversations < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
-    add_index :conversations, [:recipient_id, :sender_id], unique: true
+    add_index :conversations, %i[recipient_id sender_id], unique: true
   end
 end

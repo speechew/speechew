@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class QuestionSet < ApplicationRecord
   default_scope { where(deleted: false) }
-  validates :title, presence: true, :uniqueness => {:unless => :deleted?, :scope => :deleted}
+  validates :title, presence: true, uniqueness: { unless: :deleted?, scope: :deleted }
 
   has_many :question_set_topics
   has_many :topics, through: :question_set_topics

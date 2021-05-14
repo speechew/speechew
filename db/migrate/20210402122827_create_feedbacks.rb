@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateFeedbacks < ActiveRecord::Migration[6.0]
   def change
     create_table :feedbacks do |t|
@@ -7,7 +9,7 @@ class CreateFeedbacks < ActiveRecord::Migration[6.0]
       t.integer :vocabulary
       t.integer :grammar
       t.text :notes
-      t.boolean :deleted, :default => false
+      t.boolean :deleted, default: false
 
       t.timestamps
     end

@@ -9,16 +9,16 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.integer :gender
       t.date :dob
       t.text :bio
-      t.boolean :availability, :default => true
+      t.boolean :availability, default: true
       t.float :language_score
-      t.boolean :blocked, :default => false
-      t.integer :bad_mark, :default => 0
-      t.integer :no_of_times_blocked, :default => 0
+      t.boolean :blocked, default: false
+      t.integer :bad_mark, default: 0
+      t.integer :no_of_times_blocked, default: 0
       t.datetime :last_blocked_at
 
       ## Database authenticatable
-      t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
+      t.string :email,              null: false, default: ''
+      t.string :encrypted_password, null: false, default: ''
 
       ## Recoverable
       t.string   :reset_password_token
@@ -44,7 +44,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       t.string   :unlock_token # Only if unlock strategy is :email or :both
       t.datetime :locked_at
-
 
       t.timestamps null: false
     end

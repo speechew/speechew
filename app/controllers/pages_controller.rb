@@ -1,24 +1,24 @@
+# frozen_string_literal: true
+
 class PagesController < ApplicationController
   load_and_authorize_resource
-  before_action :set_page, only: [:show, :edit, :update, :destroy]
+  before_action :set_page, only: %i[show edit update destroy]
   respond_to :html, :js, :json
-  
+
   def index
-	  respond_to do |format|
+    respond_to do |format|
       format.html
-      format.json { render json: PageDatatable.new(view_context, {ca: current_user}) }
+      format.json { render json: PageDatatable.new(view_context, { ca: current_user }) }
     end
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @page = Page.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @page = Page.new(page_params)
@@ -32,16 +32,17 @@ class PagesController < ApplicationController
 
   def destroy
     @page.deleted = 1
-	  @page.save
+    @page.save
   end
 
   private
-    def set_page
-      @page = Page.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def page_params
-      params.require(:page).permit(:code, :title, :content)
-    end
+  def set_page
+    @page = Page.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def page_params
+    params.require(:page).permit(:code, :title, :content)
+  end
 end

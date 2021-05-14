@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # app/channels/room_channel.rb
 class RoomChannel < ApplicationCable::Channel
   def subscribed

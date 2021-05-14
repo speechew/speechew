@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   resources :feedbacks
   get 'give-feedback', to: 'give_feedback#index'
@@ -11,24 +13,24 @@ Rails.application.routes.draw do
   get 'my-articles', to: 'articles#my_articles'
   get 'review-articles', to: 'articles#review_articles'
   get 'users-list', to: 'users_list#index'
-  get 'user-view/:id', to: 'users#user_view', :as => :user_view
-  resources :knowledge_books, :path => 'knowledge-books'
+  get 'user-view/:id', to: 'users#user_view', as: :user_view
+  resources :knowledge_books, path: 'knowledge-books'
   resources :pages
-  resources :question_sets, :path => 'question-sets'
+  resources :question_sets, path: 'question-sets'
   resources :topics
   resources :countries
   resources :languages
-  devise_for :users, :controllers => {:registrations => "user/registrations"}
+  devise_for :users, controllers: { registrations: 'user/registrations' }
   get 'speak-now', to: 'speak_now#index'
   get 'dashboard', to: 'dashboard#index'
-  root "speak_now#index"
+  root 'speak_now#index'
   # voice call routes
-  get "start_speaking", to: 'rooms#create_room'
-  get "search_partner", to: 'rooms#search_partner'
-  get "decline-call", to: 'rooms#decline_call'
-  get "end-session", to: 'rooms#end_session'
-  get "free-user", to: 'rooms#free_user'
-  get "monitor", to: 'rooms#monitor'
+  get 'start_speaking', to: 'rooms#create_room'
+  get 'search_partner', to: 'rooms#search_partner'
+  get 'decline-call', to: 'rooms#decline_call'
+  get 'end-session', to: 'rooms#end_session'
+  get 'free-user', to: 'rooms#free_user'
+  get 'monitor', to: 'rooms#monitor'
   resources :conversations, only: [:create] do
     member do
       post :close

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateKnowledgeChapters < ActiveRecord::Migration[6.0]
   def change
     create_table :knowledge_chapters do |t|

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-StimulusReflex.configure do |config|
+StimulusReflex.configure do |_config|
   # Enable/disable exiting / warning when the sanity checks fail options:
   # `:exit` or `:warn` or `:ignore`
 
@@ -29,5 +29,4 @@ StimulusReflex.configure do |config|
   StimulusReflex.configure do |config|
     config.on_failed_sanity_checks = :warn
   end
-
 end

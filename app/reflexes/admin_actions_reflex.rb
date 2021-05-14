@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AdminActionsReflex < ApplicationReflex
-   delegate :current_ability, to: :controller
+  delegate :current_ability, to: :controller
 
   # Add Reflex methods in this file.
   #
@@ -31,18 +31,18 @@ class AdminActionsReflex < ApplicationReflex
   def toggle_editor
     user = User.find(element.dataset[:id])
     if user.has_role? :editor
-      user.remove_role "editor"
+      user.remove_role 'editor'
     else
-      user.add_role "editor"
+      user.add_role 'editor'
     end
   end
 
   def toggle_tutor
     user = User.find(element.dataset[:id])
     if user.has_role? :tutor
-      user.remove_role "tutor"
+      user.remove_role 'tutor'
     else
-      user.add_role "tutor"
+      user.add_role 'tutor'
     end
   end
 end

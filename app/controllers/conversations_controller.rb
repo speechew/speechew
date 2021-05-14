@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class ConversationsController < ApplicationController
   load_and_authorize_resource
   def create
     @conversation = Conversation.get(current_user.id, params[:user_id])
-    
+
     add_to_conversations unless conversated?
 
     respond_to do |format|
@@ -10,9 +12,9 @@ class ConversationsController < ApplicationController
     end
   end
 
-    def close
+  def close
     @conversation = Conversation.find(params[:id])
-    @conversation.update(:read => true)
+    @conversation.update(read: true)
     session[:conversations].delete(@conversation.id)
 
     respond_to do |format|

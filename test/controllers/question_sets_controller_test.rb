@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class QuestionSetsControllerTest < ActionDispatch::IntegrationTest
@@ -5,17 +7,17 @@ class QuestionSetsControllerTest < ActionDispatch::IntegrationTest
     @question_set = question_sets(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get question_sets_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get new_question_set_url
     assert_response :success
   end
 
-  test "should create question_set" do
+  test 'should create question_set' do
     assert_difference('QuestionSet.count') do
       post question_sets_url, params: { question_set: { deleted: @question_set.deleted, title: @question_set.title } }
     end
@@ -23,22 +25,23 @@ class QuestionSetsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to question_set_url(QuestionSet.last)
   end
 
-  test "should show question_set" do
+  test 'should show question_set' do
     get question_set_url(@question_set)
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_question_set_url(@question_set)
     assert_response :success
   end
 
-  test "should update question_set" do
-    patch question_set_url(@question_set), params: { question_set: { deleted: @question_set.deleted, title: @question_set.title } }
+  test 'should update question_set' do
+    patch question_set_url(@question_set),
+          params: { question_set: { deleted: @question_set.deleted, title: @question_set.title } }
     assert_redirected_to question_set_url(@question_set)
   end
 
-  test "should destroy question_set" do
+  test 'should destroy question_set' do
     assert_difference('QuestionSet.count', -1) do
       delete question_set_url(@question_set)
     end
