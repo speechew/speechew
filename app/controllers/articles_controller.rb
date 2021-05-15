@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
   add_breadcrumb 'Articles', :articles_path
 
   def index
-    @articles = Article.published.paginate(page: params[:page], per_page: 4)
+    @articles = Article.includes(:user).published.paginate(page: params[:page], per_page: 4)
   end
 
   def show
