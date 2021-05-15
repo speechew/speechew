@@ -17,4 +17,13 @@ module ApplicationHelper
       type
     end
   end
+  def display_as_badges(arr,type)
+    badges = ""
+    if arr.any? and !type.blank?
+      arr.each do |name|
+        badges += '<span class="badge badge-pill badge-'+type+' mr-1">'+name+'</span>'
+      end
+    end
+    return badges
+  end
 end

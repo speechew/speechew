@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :categories
   get 'my-articles', to: 'articles#my_articles'
   get 'review-articles', to: 'articles#review_articles'
+  get 'all-articles', to: 'articles#all_articles'
   get 'users-list', to: 'users_list#index'
   get 'user-view/:id', to: 'users#user_view', as: :user_view
   resources :knowledge_books, path: 'knowledge-books'

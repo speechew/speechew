@@ -1,6 +1,6 @@
 <div class="d-flex flex-column flex-lg-row ">
   <div class="mr-auto">
-    <h3>My Articles</h3> 
+    <h3>All Articles</h3> 
   </div>
   <p>
     <% if can? :create, Article %>
@@ -12,11 +12,12 @@
 <div class="col-md-12">
   <div class="panel panel-inverse">
     <div class="panel-body">    
-      <table id="articles-table" data-source="<%= my_articles_path(format: :json) %>" class="table table-striped table-bordered dataTable no-footer" width="100%">
+      <table id="admin-articles-table" data-source="<%= all_articles_path(format: :json) %>" class="table table-striped table-bordered dataTable no-footer" width="100%">
         <thead>
           <tr>
             <th>Title</th>
             <th>Categories</th>
+            <th>Editor</th>
             <th>Status</th>
 		        <th>Operations</th>
           </tr>

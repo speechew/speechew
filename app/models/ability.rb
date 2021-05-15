@@ -8,6 +8,7 @@ class Ability
     if user.has_role? :admin
       can :manage, :all
       can :update, User
+      cannot :my_articles, Article
     elsif user.has_role? :editor
       can :create, Message
       can :read, Message, conversation: { sender_id: user.id }

@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 class ArticleDatatable < AjaxDatatablesRails::Base
-  def_delegators :@view, :link_to, :h, :mailto, :article_path, :edit_article_path, :display_status
+  def_delegators :@view, :link_to, :h, :mailto, :article_path, :edit_article_path, :display_status, :display_as_badges
 
   def view_columns
     @view_columns ||= {
       title: { source: 'Article.title', cond: :like },
-      status: { source: 'Article.status', cond: :like }
+      categories:{ source: 'Category.name', cond: :like },
+      editor: { source: 'User.full_name', cond: :like },
+      status: { source: 'Article.status', cond: :like },
     }
   end
 
@@ -29,6 +31,8 @@ class ArticleDatatable < AjaxDatatablesRails::Base
 
       {
         title: link_to(record.title, article_path(record)),
+        categories: display_as_badges(record.categories.collect(&:name),"light").html_safe,
+        editor: record.user.full_name,
         status: record.display_status,
         ops: ops.html_safe
       }
@@ -40,9 +44,9 @@ class ArticleDatatable < AjaxDatatablesRails::Base
     where[:status] = params[:status] unless params[:status].nil?
     # insert query here
     if options[:ca].has_role? :admin
-      Article.where(where)
+      Article.includes([:user]).joins(:user).joins(:categories).where(where).distinct
     else
-      Article.where(user_id: options[:ca].id).where(where)
+      Article.includes([:user]).joins(:user).joins(:categories).where(user_id: options[:ca].id).where(where).distinct
     end
   end
 

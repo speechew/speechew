@@ -55,6 +55,13 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def all_articles
+    respond_to do |format|
+      format.html
+      format.json { render json: ArticleDatatable.new(view_context, { ca: current_user }) }
+    end
+  end
+
   private
 
   def set_article
