@@ -7,16 +7,20 @@
 </div>
 <% else %>
 <div class="d-flex flex-column flex-lg-row ">
-  <div class="mr-auto">
+  <div class="mr-auto mb-4">
     <h3>Category: <%= category_name(params[:category])%></h3> 
   </div>
 </div>
 <% end %>
 <div class="row">
+  <% if @articles.any? %>
   <% @articles.each do |article|%>
-<%= render "article_preview",:article => article %>
-<% end %>
+    <%= render "article_preview",:article => article %>
+    <% end %>
+  <% else %>
+    <%= render "no_articles" %>
+  <% end %>
 </div>
 <div class="pagination-outer w-100">
-<%= will_paginate @articles, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+  <%= will_paginate @articles, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 </div>
