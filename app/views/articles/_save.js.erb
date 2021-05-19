@@ -4,6 +4,7 @@ $("ul.errors").html("")
     $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
   <% end %>
 <% else %>  
-  $('#articles-table').DataTable().ajax.reload();
+  $('#my-articles-table').DataTable().ajax.reload();
+  $('#admin-articles-table').DataTable().ajax.reload();
   $("#global-modal").modal("hide")
 <% end %>

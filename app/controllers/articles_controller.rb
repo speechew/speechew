@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy]
   respond_to :html, :js, :json
 
-  add_breadcrumb 'Articles', :articles_path
+  add_breadcrumb 'Articles', "/articles "
 
   def index
     if params[:category].nil?
@@ -14,7 +14,9 @@ class ArticlesController < ApplicationController
     else
       category = Category.where(:name => params[:category]).first
       @articles = category.articles.includes(:user).published.paginate(page: params[:page], per_page: 4)
+      add_breadcrumb "Category: "+params[:category].to_s, articles_path(:category => params[:category]), match: :exact
     end
+
   end
 
   def show

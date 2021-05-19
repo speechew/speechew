@@ -225,6 +225,8 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    scout_apm (4.0.4)
+      parser
     select2-rails (4.0.13)
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
@@ -308,6 +310,7 @@ DEPENDENCIES
   rolify
   rubocop
   sass-rails (>= 6)
+  scout_apm
   select2-rails
   selenium-webdriver
   spring
@@ -326,4 +329,4 @@ RUBY VERSION
    ruby 2.5.1p57
 
 BUNDLED WITH
-   2.1.4
+   2.2.17

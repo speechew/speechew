@@ -43,6 +43,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'bullet'
+  gem 'scout_apm' #start with SCOUT_DEV_TRACE=true rails server
 end
 
 group :test do
