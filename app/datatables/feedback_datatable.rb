@@ -20,7 +20,8 @@ class FeedbackDatatable < AjaxDatatablesRails::Base
         ops = "#{ops} #{link_to('<i class="fas fa-eye"></i>'.html_safe, feedback_path(record))}"
       end
       if options[:ca].can? :update, record
-        ops = "#{ops} #{link_to('<i class="fas fa-pencil-alt"></i>'.html_safe, edit_feedback_path(record))}"
+        ops = "#{ops} #{link_to('<i class="fas fa-pencil-alt"></i>'.html_safe,
+                                edit_feedback_path(record))}"
       end
 
       if options[:ca].can? :destroy, record

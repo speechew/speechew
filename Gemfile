@@ -40,10 +40,10 @@ group :development do
   gem 'listen', '~> 3.2'
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'bullet'
+  gem 'scout_apm' # start with SCOUT_DEV_TRACE=true rails server
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'bullet'
-  gem 'scout_apm' #start with SCOUT_DEV_TRACE=true rails server
 end
 
 group :test do
@@ -66,6 +66,7 @@ gem 'jquery-rails'
 gem 'minitest-rails'
 gem 'rolify'
 gem 'rubocop', require: false
+gem 'rubocop-rspec', require: false
 gem 'select2-rails'
 gem 'stimulus_reflex', '~> 3.4'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

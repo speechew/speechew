@@ -20,7 +20,8 @@ ActiveRecord::Schema.define(version: 20_210_402_122_827) do
     t.integer 'record_id', null: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
-    t.index %w[record_type record_id name], name: 'index_action_text_rich_texts_uniqueness', unique: true
+    t.index %w[record_type record_id name], name: 'index_action_text_rich_texts_uniqueness',
+                                            unique: true
   end
 
   create_table 'active_storage_attachments', force: :cascade do |t|
@@ -79,7 +80,8 @@ ActiveRecord::Schema.define(version: 20_210_402_122_827) do
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.boolean 'read', default: false
-    t.index %w[recipient_id sender_id], name: 'index_conversations_on_recipient_id_and_sender_id', unique: true
+    t.index %w[recipient_id sender_id], name: 'index_conversations_on_recipient_id_and_sender_id',
+                                        unique: true
   end
 
   create_table 'countries', force: :cascade do |t|
@@ -183,7 +185,8 @@ ActiveRecord::Schema.define(version: 20_210_402_122_827) do
     t.integer 'resource_id'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
-    t.index %w[name resource_type resource_id], name: 'index_roles_on_name_and_resource_type_and_resource_id'
+    t.index %w[name resource_type resource_id],
+            name: 'index_roles_on_name_and_resource_type_and_resource_id'
     t.index ['name'], name: 'index_roles_on_name'
     t.index %w[resource_type resource_id], name: 'index_roles_on_resource_type_and_resource_id'
   end

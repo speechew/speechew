@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-  class User::PasswordsController < Devise::PasswordsController
+module User
+  class PasswordsController < Devise::PasswordsController
     # GET /resource/password/new
     # def new
     #   super
@@ -32,3 +33,4 @@
     #   super(resource_name)
     # end
   end
+end

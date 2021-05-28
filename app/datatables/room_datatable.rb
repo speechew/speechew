@@ -21,7 +21,8 @@ class RoomDatatable < AjaxDatatablesRails::Base
       ops = link_to('<i class="fa fa-eye"> </i>'.html_safe, room_path(record))
 
       if options[:ca].can? :update, record
-        ops = "#{ops} #{link_to('<i class="fa fa-pencil"> </i>'.html_safe, edit_room_path(record), remote: true)}"
+        ops = "#{ops} #{link_to('<i class="fa fa-pencil"> </i>'.html_safe, edit_room_path(record),
+                                remote: true)}"
       end
 
       if options[:ca].can? :destroy, record

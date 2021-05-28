@@ -13,7 +13,7 @@ class Article < ApplicationRecord
 
   has_rich_text :content
   before_create :set_author
-  enum status: { 'In progress': 0, 'Review': 1, 'Published': 2 }
+  enum status: { 'In progress': 0, Review: 1, Published: 2 }
 
   def set_author
     self.user_id = User.current.id

@@ -4,9 +4,7 @@ class CategoryDatatable < AjaxDatatablesRails::Base
   def_delegators :@view, :link_to, :h, :mailto, :category_path, :edit_category_path
 
   def view_columns
-    @view_columns ||= {
-      name: { source: 'Category.name', cond: :like }
-    }
+    @view_columns ||= { name: { source: 'Category.name', cond: :like } }
   end
 
   private

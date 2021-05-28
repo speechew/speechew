@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-  class User::RegistrationsController < Devise::RegistrationsController
+module User
+  class RegistrationsController < Devise::RegistrationsController
     # before_action :configure_sign_up_params, only: [:create]
     # before_action :configure_account_update_params, only: [:update]
 
@@ -14,7 +15,8 @@
       @user = User.new(sign_up_params)
       if @user.save
         @user.add_role 'student'
-        redirect_to new_user_session_path, notice: 'You have to confirm your email address before continuing.'
+        redirect_to new_user_session_path,
+                    notice: 'You have to confirm your email address before continuing.'
       else
         render layout: false
       end
@@ -54,7 +56,8 @@
         end
         render layout: false
       else
-        redirect_to(root_url, { flash: { error: 'You are not authorized to perform this action!' } })
+        redirect_to(root_url,
+                    { flash: { error: 'You are not authorized to perform this action!' } })
       end
     end
 
@@ -85,7 +88,8 @@
     end
 
     def update_profile_params
-      params.require(:user).permit(:first_name, :last_name, :dob, :gender, :bio, :country_id, :language_id)
+      params.require(:user).permit(:first_name, :last_name, :dob, :gender, :bio, :country_id,
+                                   :language_id)
     end
 
     # If you have extra params to permit, append them to the sanitizer.
@@ -108,3 +112,4 @@
     #   super(resource)
     # end
   end
+end

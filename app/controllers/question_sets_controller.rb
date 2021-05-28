@@ -43,6 +43,7 @@ class QuestionSetsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def question_set_params
-    params.require(:question_set).permit(:title, topic_ids: [], questions_attributes: %i[id content _destroy])
+    params.require(:question_set).permit(:title, topic_ids: [],
+                                                 questions_attributes: %i[id content _destroy])
   end
 end

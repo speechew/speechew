@@ -8,10 +8,9 @@ class User < ApplicationRecord
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
-  enum gender: { 'Female': 0, 'Male': 1 }
+  enum gender: { Female: 0, Male: 1 }
 
   belongs_to :country, optional: true
   belongs_to :language, optional: true

@@ -4,9 +4,7 @@ class TopicDatatable < AjaxDatatablesRails::Base
   def_delegators :@view, :link_to, :h, :mailto, :topic_path, :edit_topic_path
 
   def view_columns
-    @view_columns ||= {
-      name: { source: 'Topic.name', cond: :like }
-    }
+    @view_columns ||= { name: { source: 'Topic.name', cond: :like } }
   end
 
   private
@@ -16,7 +14,8 @@ class TopicDatatable < AjaxDatatablesRails::Base
       ops = ''
 
       if options[:ca].can? :update, record
-        ops = "#{ops} #{link_to('<i class="fas fa-pencil-alt"></i>'.html_safe, edit_topic_path(record), remote: true)}"
+        ops = "#{ops} #{link_to('<i class="fas fa-pencil-alt"></i>'.html_safe,
+                                edit_topic_path(record), remote: true)}"
       end
 
       if options[:ca].can? :destroy, record

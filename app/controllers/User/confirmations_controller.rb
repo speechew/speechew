@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-  class User::ConfirmationsController < Devise::ConfirmationsController
-
+module User
+  class ConfirmationsController < Devise::ConfirmationsController
     # GET /resource/confirmation/new
     # def new
     #   super
@@ -29,3 +29,4 @@
     #   super(resource_name, resource)
     # end
   end
+end

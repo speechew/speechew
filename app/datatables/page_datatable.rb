@@ -17,7 +17,8 @@ class PageDatatable < AjaxDatatablesRails::Base
       ops = ''
 
       if options[:ca].can? :update, record
-        ops = "#{ops} #{link_to('<i class="fas fa-pencil-alt"></i>'.html_safe, edit_page_path(record), remote: true)}"
+        ops = "#{ops} #{link_to('<i class="fas fa-pencil-alt"></i>'.html_safe,
+                                edit_page_path(record), remote: true)}"
       end
 
       if options[:ca].can? :destroy, record

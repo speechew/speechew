@@ -17,7 +17,8 @@ class KnowledgeBookDatatable < AjaxDatatablesRails::Base
       ops = ''
 
       if options[:ca].can? :update, record
-        ops = "#{ops} #{link_to('<i class="fas fa-pencil-alt"></i>'.html_safe, edit_knowledge_book_path(record))}"
+        ops = "#{ops} #{link_to('<i class="fas fa-pencil-alt"></i>'.html_safe,
+                                edit_knowledge_book_path(record))}"
       end
 
       if options[:ca].can? :destroy, record

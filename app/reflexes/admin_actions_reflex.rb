@@ -25,7 +25,7 @@ class AdminActionsReflex < ApplicationReflex
 
   def toggle
     user = User.find(element.dataset[:id])
-    user.update(blocked: (user.blocked? ? false : true))
+    user.update(blocked: !user.blocked?)
   end
 
   def toggle_editor

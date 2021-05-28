@@ -19,7 +19,8 @@ class QuestionSetsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create question_set' do
     assert_difference('QuestionSet.count') do
-      post question_sets_url, params: { question_set: { deleted: @question_set.deleted, title: @question_set.title } }
+      post question_sets_url,
+           params: { question_set: { deleted: @question_set.deleted, title: @question_set.title } }
     end
 
     assert_redirected_to question_set_url(QuestionSet.last)

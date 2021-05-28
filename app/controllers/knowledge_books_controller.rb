@@ -22,7 +22,9 @@ class KnowledgeBooksController < ApplicationController
 
   def create
     @knowledge_book = KnowledgeBook.new(knowledge_book_params)
-    redirect_to knowledge_books_path, notice: 'Knowledge book successfully created.' if @knowledge_book.save
+    if @knowledge_book.save
+      redirect_to knowledge_books_path, notice: 'Knowledge book successfully created.'
+    end
   end
 
   def update

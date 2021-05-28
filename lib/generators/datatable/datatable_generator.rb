@@ -5,7 +5,9 @@ class DatatableGenerator < Rails::Generators::NamedBase
   class_option :coffeescript, type: :boolean, default: true, desc: 'Include Coffeescript file'
 
   def generate_coffeescript
-    template 'javascript.js.coffee', "app/assets/javascripts/#{file_name.underscore}.js.coffee" if options.coffeescript?
+    if options.coffeescript?
+      template 'javascript.js.coffee', "app/assets/javascripts/#{file_name.underscore}.js.coffee"
+    end
   end
 
   def create_datatable_file

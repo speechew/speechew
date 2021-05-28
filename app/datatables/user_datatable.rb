@@ -19,7 +19,8 @@ class UserDatatable < AjaxDatatablesRails::Base
       ops = ''
 
       if options[:ca].can? :show, record
-        ops = "#{ops} #{link_to('<i class="fas fa-eye"></i>'.html_safe, user_view_path(id: record.id))}"
+        ops = "#{ops} #{link_to('<i class="fas fa-eye"></i>'.html_safe,
+                                user_view_path(id: record.id))}"
       end
 
       {

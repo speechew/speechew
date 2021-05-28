@@ -20,7 +20,8 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
   test 'should create page' do
     assert_difference('Page.count') do
       post pages_url,
-           params: { page: { code: @page.code, content: @page.content, deleted: @page.deleted, title: @page.title } }
+           params: { page: { code: @page.code, content: @page.content, deleted: @page.deleted,
+                             title: @page.title } }
     end
 
     assert_redirected_to page_url(Page.last)
@@ -38,7 +39,8 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should update page' do
     patch page_url(@page),
-          params: { page: { code: @page.code, content: @page.content, deleted: @page.deleted, title: @page.title } }
+          params: { page: { code: @page.code, content: @page.content, deleted: @page.deleted,
+                            title: @page.title } }
     assert_redirected_to page_url(@page)
   end
 

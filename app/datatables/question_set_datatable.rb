@@ -4,9 +4,7 @@ class QuestionSetDatatable < AjaxDatatablesRails::Base
   def_delegators :@view, :link_to, :h, :mailto, :question_set_path, :edit_question_set_path
 
   def view_columns
-    @view_columns ||= {
-      title: { source: 'QuestionSet.title', cond: :like }
-    }
+    @view_columns ||= { title: { source: 'QuestionSet.title', cond: :like } }
   end
 
   private

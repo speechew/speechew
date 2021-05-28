@@ -43,6 +43,7 @@ class FeedbacksController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def feedback_params
-    params.require(:feedback).permit(:given_to_id, :given_by_id, :fluency, :vocabulary, :grammar, :notes)
+    params.require(:feedback).permit(:given_to_id, :given_by_id, :fluency, :vocabulary, :grammar,
+                                     :notes)
   end
 end

@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(_resource)
     if current_user.has_role? :admin
       dashboard_path
-    elsif current_user.has_role? :student or current_user.has_role? :editor
+    elsif current_user.has_role?(:student) || current_user.has_role?(:editor)
       root_path
     else
       articles_path

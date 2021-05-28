@@ -52,7 +52,8 @@ class RoomsController < ApplicationController
       receiver = receiver.sample
       current_user.update(in_call: true, partner_token: params[:partner_token],
                           partner_token_expiry: Time.now + 10.seconds, search_partner_try: 1)
-      receiver.update(partner_token: params[:partner_token], partner_token_expiry: Time.now + 10.seconds)
+      receiver.update(partner_token: params[:partner_token],
+                      partner_token_expiry: Time.now + 10.seconds)
       ActionCable.server.broadcast("notification-#{receiver.id}", message: 'incoming_call')
     end
     render layout: false
@@ -60,15 +61,18 @@ class RoomsController < ApplicationController
 
   def decline_call
     call_maker = User.where.not(id: current_user.id).where(partner_token: current_user.partner_token).first
-    current_user.update(in_call: false, partner_token: nil, partner_token_expiry: nil, search_partner_try: 0)
+    current_user.update(in_call: false, partner_token: nil, partner_token_expiry: nil,
+                        search_partner_try: 0)
     if call_maker.search_partner_try > 3
       ActionCable.server.broadcast("notification-#{call_maker.id}", message: 'all_users_busy')
-      call_maker.update(in_call: false, partner_token: nil, partner_token_expiry: nil, search_partner_try: 0)
+      call_maker.update(in_call: false, partner_token: nil, partner_token_expiry: nil,
+                        search_partner_try: 0)
     else
       new_receiver = User.where.not(id: [current_user.id, call_maker.id]).online
       if new_receiver.empty?
         ActionCable.server.broadcast("notification-#{call_maker.id}", message: 'all_users_busy')
-        call_maker.update(in_call: false, partner_token: nil, partner_token_expiry: nil, search_partner_try: 0)
+        call_maker.update(in_call: false, partner_token: nil, partner_token_expiry: nil,
+                          search_partner_try: 0)
       else
         new_receiver = new_receiver.sample
         new_receiver.update(in_call: true, partner_token: call_maker.partner_token,
@@ -81,11 +85,13 @@ class RoomsController < ApplicationController
   end
 
   def free_user
-    current_user.update(in_call: false, partner_token: nil, partner_token_expiry: nil, search_partner_try: 0)
+    current_user.update(in_call: false, partner_token: nil, partner_token_expiry: nil,
+                        search_partner_try: 0)
   end
 
   def end_session
-    current_user.update(in_call: false, partner_token: nil, partner_token_expiry: nil, search_partner_try: 0)
+    current_user.update(in_call: false, partner_token: nil, partner_token_expiry: nil,
+                        search_partner_try: 0)
     render layout: false
   end
 
