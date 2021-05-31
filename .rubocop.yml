@@ -8,6 +8,7 @@ require:
 AllCops:
   NewCops: enable
   Exclude:
+    - 'app/datatables/*'
     - 'vendor/**/*'
     - 'spec/fixtures/**/*'
     - 'tmp/**/*'
