@@ -33,11 +33,8 @@ module User
       @form_type = nil
       if current_user.can? :update, @user
         if !params[:user][:profile].nil?
-          if @user.update(update_profile_params)
-            sign_in @user
-          else
-            sign_in @user
-          end
+          @user.update(update_profile_params)
+          sign_in @user
           @form_type = 'profile'
         elsif !params[:user][:change_password].nil?
           if @user.valid_password?(params[:user][:current_password])
